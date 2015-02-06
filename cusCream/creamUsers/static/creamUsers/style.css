@@ -7,6 +7,7 @@
 		margin: 0 auto;
 	}
 }
+
 /*
 .navbar.transparent.navbar-inverse.navbar-fixed-top{
 	border-width: 0px;
@@ -210,7 +211,6 @@ a.btn.btn-sm:hover, a.btn.btn-sm:focus{
 }
 .fourcolumn{
 	width:auto;
-	background:black;
 	padding: 0 150px 0 150px;
 }
 
@@ -222,7 +222,7 @@ a.btn.btn-sm:hover, a.btn.btn-sm:focus{
 }
 
 .col-md-3{
-	background:black;
+	background:white;
 	color:white;
 }
 .pclass{

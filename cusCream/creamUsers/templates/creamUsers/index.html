@@ -41,7 +41,7 @@
 		</div>
 	  </div>
 </nav>
-<div id="myCarousel" class="carousel slide" style="margin-top:50px;margin-bottom:-50px;display:cover" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" style="margin-top:50px;margin-bottom:-50px;" data-ride="carousel">
 	<!-- Carousel indicators -->
 	<ol class="carousel-indicators">
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -51,7 +51,7 @@
 	<!-- Carousel items -->
 	<div class="carousel-inner">
 		<div class="item active">
-			<a href=""><img src="{% static "creamUsers/images/background1a.png" %}" alt=""></a>
+			<a href=""><img src="{% static "creamUsers/images/background1a.png" %}" alt="" style="height:cover;width:100%"></a>
 			<div class="carousel-caption">
 				<div class="caption1">
 					<p class="caph2" style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;">Beautiful Skin. Personalized.</p>
@@ -62,7 +62,7 @@
 			</div>
 		</div>
 		<div class="item">
-			<a href=""><img src="{% static "creamUsers/images/plan2.png" %}" alt=""></a>
+			<a href=""><img src="{% static "creamUsers/images/plan2.png" %}" alt="" style="height:cover;width:100%;"></a>
 			<div class="carousel-caption">
 				<div class="caption2">
 					<p class="caph2" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color:white">Where we customize skin products</p>
@@ -73,10 +73,10 @@
 			</div>
 		</div>
 		<div class="item">
-			<a href=""><img src="{% static "creamUsers/images/background2.png" %}" alt=""></a>
+			<a href=""><img src="{% static "creamUsers/images/background2.png" %}" alt=""style="height:cover;width:100%"></a>
 			<div class="carousel-caption">
-					<div class="caption3">
-					<p class="caph2" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color:white">Do you know what's in your skin product?</p>
+					<div class="caption3" style="margin-bottom:100px;">
+					<p class="caph2" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color:white;">Do you know what's in your skin product?</p>
 					<p class="caph3" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color:white">Few people really know what's in their products</p>
 					<p class="capp" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color:white">Educate yourself </p>
 					<a href="#" class="btn btn-lg btn-primary" role="button">Learn more.</a>
@@ -94,9 +94,9 @@
 </div>
 	
 	<section id="process">
-		<div class="container-fluid fourcolumn">
+		<div class="container-fluid fourcolumn col-md-8" style="background-color:whitesmoke;margin-top:40px;">
 			<div class="row text-center">
-				<div class="col-md-3">
+				<div class="col-md-2" style="margin-left:16%">
 					<div class="plan text-center">
 						<span class="iplan">&nbsp;</span>
 						<h4 class="heading">Plan</h4>
@@ -105,7 +105,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-2" style="">
 					<div class="plan text-center">
 						<span class="idesign">&nbsp;</span>
 						<h4 class="heading">Design</h4>
@@ -114,7 +114,7 @@
 					</div>
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-2" style="">
 					<div class="plan text-center">
 						<span class="ibuild">&nbsp;</span>
 						<h4 class="heading">Build</h4>
@@ -123,7 +123,7 @@
 					</div> 
 				</div>
 				
-				<div class="col-md-3">
+				<div class="col-md-2" style="">
 					<div class="plan text-center">
 						<span class="iuse">&nbsp;</span>
 						<h4 class="heading">Use</h4>
