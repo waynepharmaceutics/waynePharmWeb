@@ -26,9 +26,29 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# sending emails to gmail account
+MAILER_EMAIL_BACKEND = 'django_ses.SESBackend' 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'wayne.pharmaceutics@gmail.com'
+EMAIL_HOST_PASSWORD = 'dr4ko4462'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# provide our get_profile()
+AUTH_PROFILE_MODULE = 'creamUsers.Skinuser'
+
+#URL for @login_required decorator to use
+LOGIN_URL = '/login/'
+
+# redirect authenticated users
+LOGIN_REDIRECT_URL = '/users/'
+
 # use the template directory
 TEMPLATE_DIRS = (
-    '/Users/Nemenis/Dropbox/cusCream/creamUsers/templates/',
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".	
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    'Users/Nemesis/Documents/GitHub/waynePharmWeb/cusCream/creamUsers/templates',
 )
 
 TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
@@ -37,6 +57,7 @@ TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
 # Application definition
 
 INSTALLED_APPS = (
+    'creamUsers',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +65,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
-    'creamUsers',
+    
 )
 
 MIDDLEWARE_CLASSES = (
