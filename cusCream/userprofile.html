@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p> Welcome {{skinuser.firstname}}! </p>
+<p> Birthday: {{skinuser.birthday}}</p>
+<p> You have made following skin products: </p>
+{% for skinprofile in skinuser.getProfiles %}
+<li> <a href = "{% url 'survey:result' skinprofile.id %}"> Skin Product {{forloop.counter}} </a>: My ({% for choice in skinprofile.getchoices %} {% ifnotequal 1 forloop.counter %} / {% endifnotequal %} {{choice.choice_text}}{% endfor %}) Cream - ${{skinprofile.price}}</li>
+{% endfor %}
+
+<p>My skin wants to try more products. Add other products by:</p>
+<p><a href ='/survey/1'>Take the Survey</a></p>
+<p><a href ="{% url 'survey:cusingredients' %}">Choose Custom Ingredients</a></p>
+
+<p> View my addresses: </p>
+{{skinuser.getAddresses.len}}
+{% for address in skinuser.getAddresses %}
+    <p>{{address.getInfo}}</p>
+{% endfor %}
+
+<p> View my shopping cart: </p>
+<p><a href ="{% url 'skinuser:cartdetail' %}">Shopping Cart</a></p>
+{% endblock %}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "baseNavFooter.xml" %}
+
+{% block content %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+<style> 
+	body {
+		padding-top: 30px;
+		background-color:black;
+	}
+	footer{
+		background-color:white;
+	}
+	a.register:focus, a.register:hover{
+		background-color:white;
+		color:black;
+		border: 1px solid black;
+	}
+</style>
+	<nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Wayne Pharmaceutics</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">
+			<li><a href="/">Home</a></li>
+			<li class="dropdown" href="/plan/"><a class="dropdown-toggle" data-toggle="dropdown" href="plan.html">Ingredients<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="/plan#GroupA">Cream Base</a></li>
+					<li><a href="/plan#GroupB">Main Components</a></li>
+					<li><a href="/plan#GroupC">Finishing Touches</a></li>
+				</ul>
+			</li>
+			<li><a href="/build/">Build</a></li>
+			<li><a href="/about/">About Us</a></li>
+			<li><a href="/contact/">Contact</a></li>
+			{% if user.is_authenticated %} 
+			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span>{{user.Username}}</a></li>
+			<li id="menu-gap"><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+			{% else %} 
+			<li id="menu-gap" class="active"><a href="/login/"><span class="glyphicon glyphicon-home"></span>Login</a></li>
+			{% endif %} 
+			<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>My Cart</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</nav>
+
+<!--Main Content for logging -->
+<span id="aboutsection">
+<div class="aboutmain" style="background-color:black; color:white; text-align:center;width=50%;">
+	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+	{% if messages %}
+		<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+
+	<form action = "" method = "post">
+	<div class = "register_div col-md-14" style="font-family:Museo;">
+		{% csrf_token %}
+		{% if form.errors %} <p> Please correct the following fields: </p> {% endif %}
+		
+		{% if form.username.errors %} <p class = "error"> {{ form.username.errors}} </p> {% endif %}
+		<p> <label for = "username" {% if form.username.errors %} class = "error"{% endif%}> Username: </label> </p>
+		<p>{{ form.username }} </p>
+
+		{% if form.password.errors %} <p class = "error"> {{ form.password.errors}} </p> {% endif %}
+		<p> <label for = "password" {% if form.password.errors %} class = "error"{% endif%}> Password: </label> </p>
+		<p>{{ form.password }} </p>
+
+
+		<p> <input type= "submit" style="font-family:Museo; color:white;background:black;border: 2px solid white;" alt = "register" /> </p>
+	</form>
+	<p>Forgot your password? <a href ='/resetpassword/' style="color:white">Reset it!</a></p>
+	<p>First time user? 
+	{% if next %}
+		{% ifnotequal next "/users/" %}
+			<a href="/register/?next={{next}}">Register here!</a></p>
+			<p><a href = "#"> Check Out as A Guest </a></p>
+		{% else %}
+		<a class="register" href="/register/" style="color:white"> Register here!</a></p>
+		{% endifnotequal %}
+	{%else%}
+		<a class="register" href="/register/" style="color:white;"> Register here!</a></p>
+	{% endif %}</p>
+	</div>
+</div>
+</span>
+
+{% endblock %}

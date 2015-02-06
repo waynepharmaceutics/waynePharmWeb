@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "baseNavFooter.xml" %}
+
+{% block content %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+<nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Wayne Pharmaceutics</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">
+			<li><a href="/">Home</a></li>
+			<li class="dropdown" href="/plan/"><a class="dropdown-toggle" data-toggle="dropdown" href="plan.html">Ingredients<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="/plan#GroupA">Cream Base</a></li>
+					<li><a href="/plan#GroupB">Main Components</a></li>
+					<li><a href="/plan#GroupC">Finishing Touches</a></li>
+				</ul>
+			</li>
+			<li><a href="/build/">Build</a></li>
+			<li class="active"><a href="/about/">About Us</a></li>
+			<li><a href="/contact/">Contact</a></li>
+			{% if user.is_authenticated %} 
+			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a></li>
+			<li id="menu-gap"><a href="/logout/"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+			{% else %} 
+			<li id="menu-gap"><a href="/login/"><span class="glyphicon glyphicon-home"></span> Login</a></li>
+			{% endif %} 
+			<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
+		  </ul>
+		</div>
+	</div>
+</nav>
+<span id="aboutsection">
+	<br/><br/><br/><br/></br><h2 style="font-family:Museo;color:black;text-align:center">Our Story</h2>
+	<hr color="black" align="center" width="50%">
+	
+	<div class="aboutmain">
+		<p style="font-family:Museo">Wayne Pharmaceutics is the culmination of a lifelong passion of Dr. Yun "Wayne" Chen. Ever since childhood Dr. Chen has always had a passion for
+		mixing things together to create something new. While at pharmacy school, he took a keen interest in pharmaceutical compounding.
+		After attaining a Doctor of Pharmacy (PharmD) degree, Dr. Chen began his work in retail pharmacy. He wanted to be at the front lines of pharmacy to 
+		maximize his ability to help his patients.<br/><br/><br/>
+		During his career in retail pharmacy, Dr. Chen attained two specialty certifications that gave him a better insight into
+		the world of medicine and health products. First was his Certification on Medication Therapy Management (CMTM). Having a CMTM certification
+		meant he had a more specialized grasp of patient counseling, as well as a more real world approach to how patients take and use medications and
+		other health products. He also became certified as a Pharmacy Regulatory Specialist (PRS). The PRS Certification gave him specialized knowledge
+		on both state and federal regulation pertaining to both medicine and health products.<br/><br/><br/>
+		During his many consultations with patients, many of whom were diabetics with nerve issues, or cancer patients undergoing chemotherapy and
+		radiation, he was constantly asked by patients for recommendations on skin products to both protect and maintain skin health.  
+		He stressed that there was no such thing as a perfect option for each individual because the products were all bulk-produced
+		using set ingredients and formulas. After all, these products were to be mass marketed. When asked by patients what other options they had, 
+		he suddenly realized that there were no other alternatives for them other than crafting skin products directly for them. It was through this 
+		epiphany that Dr. Chen realized the only true way for an individual to get a skin product just for them was to craft it specifically
+		for them. Thus, Wayne Pharmaceutics was born.</p>
+	</div>
+
+	
+	<br/><h2 style="font-family:Museo;color:black;text-align:center">Our Philosophy</h2>
+
+	
+	<hr color="black" align="center" width="50%">
+			
+	<div class="aboutmain">
+		<p style="font-family:Museo">The idea is simple. You give us your info about your skin and skin product preferences, and we tell you 
+		what ingredients would best fit you. That's not to say you don't get a say. We love learning, because learning more helps us make
+		better things. But, we also want to educate you, our users, so that not only can you understand what the ingredients are for, but 
+		also to figure out what may or may not work for you. <br/><br/><br/><p style="text-align:center">After all, who knows your skin better than you?</p>
+	</div>
+</span>
+
+<br/><br/><br/><br/>
+{% endblock %}

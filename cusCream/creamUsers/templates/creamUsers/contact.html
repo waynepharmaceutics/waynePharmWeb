@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "baseNavFooter.xml" %}
+
+{% block content %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+<div id="cssmenu">
+<nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">Wayne Pharmaceutics</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">
+			<li><a href="/">Home</a></li>
+			<li class="dropdown" href="/plan/"><a class="dropdown-toggle" data-toggle="dropdown" href="plan.html">Ingredients<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="/plan#GroupA">Cream Base</a></li>
+					<li><a href="/plan#GroupB">Main Components</a></li>
+					<li><a href="/plan#GroupC">Finishing Touches</a></li>
+				</ul>
+			</li>
+			<li><a href="/build/">Build</a></li>
+			<li><a href="/about/">About Us</a></li>
+			<li class="active"><a href="/contact/">Contact</a></li>
+			{% if user.is_authenticated %} 
+			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a></li>
+			<li id="menu-gap"><a href="/logout/"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+			{% else %} 
+			<li id="menu-gap"><a href="/login/"><span class="glyphicon glyphicon-home"></span> Login</a></li>
+			{% endif %} 
+			<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
+		  </ul>
+		</div>
+	</div>
+</nav>
+</div>
+<style>
+body{
+	background: transparent url({% static "creamUsers/images/contactbackground.jpg" %}) no-repeat;
+	background-size: cover;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		margin: 0;
+		padding: 0;
+}
+#pup {
+  position:absolute;
+  z-index:200; /* aaaalways on top*/
+  padding: 3px;
+  width:100px;
+  margin-left: 10px;
+  margin-top: 5px;
+  border-radius:5px;
+  background-color: white;
+  color: #3c8dc5;
+  font-family:Museo;
+  font-size: 16px;
+  font-weight:700;
+}
+#page-wrap{
+	width:600px;
+	padding-right: 10px;
+	margin-top: 50px;
+	margin-left: 800px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background: rgba(25, 25, 25, .3);
+	color:white;
+}
+#pin1{
+	float:left;
+	height:100px;
+	width:100px;
+	margin-top:300px;
+	margin-left:100px;	
+}
+#pin2{
+	float:left;
+	height:100px;
+	width:100px;
+	margin-top: 700px;	
+	margin-left: 330px;
+}
+#box{
+	font-family:Museo;
+	color:white;
+}
+
+form{
+	width:500px;
+}
+label{
+	display:block;
+	margin: 15px 0 5px 20px;
+	font: 18px;
+	font-family:Museo;
+	text-align:left;
+	padding-left:20px;
+}
+input{
+	width:90%;
+	margin: 0 0 0 20px;
+}
+textarea{
+	width:90%;
+	border-radius: 5px;
+	margin: 0 0 0 20px;
+}
+label{
+	font-family:Museo;
+	font-size:16px;
+}
+fieldset{
+	border:none;
+	padding: 0 0 20px 0;
+}
+label.labelone{
+	margin-top: 10px;
+	font-family:Museo;	
+}
+
+.btn{
+	width: 125px;
+	-moz-box-shadow:inset 0px 1px 0px 0px #424242;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #424242;
+	box-shadow:inset 0px 1px 0px 0px #424242;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #454749), color-stop(1, #8c878c));
+	background:-moz-linear-gradient(top, #454749 5%, #8c878c 100%);
+	background:-webkit-linear-gradient(top, #454749 5%, #8c878c 100%);
+	background:-o-linear-gradient(top, #454749 5%, #8c878c 100%);
+	background:-ms-linear-gradient(top, #454749 5%, #8c878c 100%);
+	background:linear-gradient(to bottom, #454749 5%, #8c878c 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#454749', endColorstr='#8c878c',GradientType=0);
+	background-color:#454749;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Museo;
+	font-size:12px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #141414;
+}
+form h4{
+	margin: 20px 0 0 30px;
+	font: 24px;
+	font-weight:bold;
+	text-align:left;
+	font-family: Museo;
+}
+input#name{
+	color:#3c8dc5;
+}
+input#email{
+	color:#3c8dc5;
+}
+.centerbutton{
+	display:inline;
+}
+input{
+	border-radius:5px;
+	font-family:Museo;
+}
+textarea{
+	margin-top:-20px;
+	color:#3c8dc5;
+}
+footer{
+	margin-top:80px;
+	background-color: rgba(225, 225, 225, 0.65);
+	color:#3c8dc5;
+}
+</style>
+
+
+<div id="pin1">
+	<a onmouseover="nhpup.popup('Corporate HQ: <br/>14 Big Horn Dr.<br/>Wayne, NJ 07470');" href="#">
+		<img src="{% static "creamUsers/images/contactpin.png" %}">
+	</a>
+</div>
+<div id="pin2">
+	<a onmouseover="nhpup.popup('Satellite Office: <br/>Hoboken, NJ 07030');" href="#">
+		<img src="{% static "creamUsers/images/contactpin.png" %}">
+	</a>
+</div>
+
+
+<div align="center" id="page-wrap">
+	<div id="contact-area">
+		<form action="contact.php" method="post">
+
+		</br><h3 class="text-center">Let us know what's on your mind!</h2>
+		
+		<h4 class="text-center">Send us an email if you have a question, concern, info you'd like to share, or any suggestions!</h3><br/>
+	
+		<fieldset>
+			<label class="labelone" for="Name">Name:</label>
+			<input type="text" name="name" id="name" />
+
+			<label for="Email">Email:</label>
+			<input type="text" name="email" id="email" />
+			
+			<label for="Message">Message:</label><br />
+			<textarea name="message" rows="20" cols="20" id="message"></textarea>
+		</fieldset>
+		<fieldset>
+		<div align="center">
+			<input class="btn" type="submit" value="Submit"/>
+			<input class="btn" type="reset" value="Reset Form"/>
+		</div>
+		</fieldset>
+		</form>
+	
+	</div>
+
+</div>
+{% endblock %}

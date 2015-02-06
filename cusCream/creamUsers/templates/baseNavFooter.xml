@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Wayne Pharmaceutics-Welcome</title>
+	
+	{% load bootstrap3 %}
+	{% load staticfiles %}
+	<link rel="stylesheet" href= {% static 'creamUsers/bootstrap.css' %} type="text/css" />
+	<link rel="stylesheet" href={% static 'creamUsers/style.css' %} type="text/css" />
+	<link rel="stylesheet" href= {% static 'creamUsers/bootstrap.min.css' %}>
+	<link rel="stylesheet" href={% static 'creamUsers/bootstrap-theme.min.css' %}>
+	<script src="{% static "creamUsers/jquery.min.js" %}"></script>
+	<script src= "{% static "creamUsers/twitter.js" %}"></script>
+	<script src= "{% static "creamUsers/scroll.js" %}"></script>
+	<script src="{% static "creamUsers/bootstrap.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "creamUsers/nhpup.js" %}"></script>
+
+</head>
+<body>
+
+{% block content %}
+{% endblock %}
+
+<footer>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="centered-pills">
+				<ul class="nav nav-pills">
+					<li><a href="/">Home</a></li>
+					<li><a href="/plan/">Ingredients</span></a></li>
+					<li><a href="/build/">Build</a></li>
+					<li><a href="/about/">About Us</a></li>
+					<li><a href="/contact/">Contact Us</a></li>
+				</ul>
+			</div>
+				
+			<div class="socialbuttons">
+				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like us on FB!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow us on Twitter!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Like us on Google Plus!"></a>
+			</div>
+			<div class="text-center">
+			<small><strong> &copy; <a href="/">Wayne Pharmaceutics</a> 2015</strong></small>
+			</div>
+		</div>
+	</div>
+</footer>
+</body>
