@@ -172,7 +172,15 @@
 				{%endif%}
 			{% endfor %}
 			</select>
-			<input type="text" value="{{ingredient1.description}}" id="baseText" />
+			<div id="layout_select1" class="1">
+				<br/><p>A thicker cream base may work best for those with very dry skin.</p>			
+			</div>
+			<div id="layout_select2" class="2" style="display:none">
+				<br/><p>A regular density cream base may work best for users with normal skin.</p>
+			</div>
+			<div id="layout_select3" class="3" style="display:none">
+				<br/><p>A thinner style cream may best suit a user with oily or sensitive skin.</p>
+			</div>
 			<br/><br/>
 			
 			
@@ -193,6 +201,15 @@
 			<br/><br/>
 			 <input type="submit" value="Done" />
 		</form>
+		<div id="layout_select1" style="display:none">
+			<br/><p>A thinner style cream may best suit a user with oily or sensitive skin.</p>
+		</div>
+		<div id="layout_select2" style="display:none">
+			<br/><p>A thinner style cream may best suit a user with oily or sensitive skin.</p>
+		</div>
+		<div id="layout_select3" style="display:none">
+			<br/><p>A thinner style cream may best suit a user with oily or sensitive skin.</p>
+		</div>
 	</div>
 </div>
 <script type="text/javascript">
@@ -201,5 +218,10 @@
 		document.getElementById(id).value =document.getElementById(type).value ;
 	}
 </script>
-
+<script type="text/javascript">
+	$("#base").change(function() {         
+	$('div[id^=layout_select]').hide('slow');
+	$('.'+this.value).show('slow');  
+	});
+</script>
 {% endblock %}
