@@ -176,11 +176,12 @@ function load() {
 			{% else %} 
 			<li id="menu-gap"><a href="/login/"><span class="glyphicon glyphicon-home"></span> Login</a></li>
 			{% endif %} 
-			<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
+			<li><a href="{% url 'creamUsers:cartdetail' %}"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
 		  </ul>
 		</div>
 	</div>
 </nav>
+
 
 <form action = "{% url 'creamUsers:selectAnswer' %}" method = "post">
 {% csrf_token %}
@@ -188,6 +189,15 @@ function load() {
 	<div id="buildtitle">
 	<h2><center/><strong/>Ready to get started on your own cream?<br/>Help us answer these questions to customize your product!</h2>
 	<br/><br/><br/>
+	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+	{% if messages %}
+		<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
 	</div>
 	<div class="container1">
 		<div class="progress">

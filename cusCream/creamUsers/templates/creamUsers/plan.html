@@ -41,7 +41,7 @@
 			{% else %} 
 			<li id="menu-gap"><a href="/login/"><span class="glyphicon glyphicon-home"></span> Login</a></li>
 			{% endif %} 
-			<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
+			<li><a href="{% url 'creamUsers:cartdetail' %}"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
 		  </ul>
 		</div>
 	  </div>
