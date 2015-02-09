@@ -5,7 +5,7 @@
 {% block content %}
 {% load staticfiles %}
 {% load bootstrap3 %}
-	<script>
+<script>
 	function answer1() {
 		if(typeof(Storage) !== "undefined") {
 			if (sessionStorage.answer1) {
@@ -18,13 +18,13 @@
 			document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
 		}
 	}
-	</script>
-	<script language="javascript" type="text/javascript">
+</script>
+<script language="javascript" type="text/javascript">
 	$("#ques1").click(function(){
 	alert($("#loll").val());
 	});
-	</script>
-	<script language="javascript" type="text/javascript">
+</script>
+<script language="javascript" type="text/javascript">
 	var tot=5;       
 	function expandDiv(divID)
 	{
@@ -104,8 +104,8 @@
 		}
 		expandDiv("q_"+divno);
 	}
-	</script>
-	<script type="text/javascript">
+</script>
+<script type="text/javascript">
 	<!--
 	function toggle_visibility(id) {
 	   var e = document.getElementById(id);
@@ -118,33 +118,43 @@
 	$('#name').change(function(){
 		$('#message').html('Hello ' + $('#name').val());
 	});
-});
+	});
 	//-->
 </script>
 <script type="text/javascript">
-function load() {
-	var all_checkbox_divs = document.getElementsByClassName("image-checkbox");
+	function load() {
+		var all_checkbox_divs = document.getElementsByClassName("image-checkbox");
 
-	for (var i=0;i<all_checkbox_divs.length;i++) {
+		for (var i=0;i<all_checkbox_divs.length;i++) {
 
-		all_checkbox_divs[i].onclick = function (e) {
-			var div_id = this.id;
-			var checkbox_id =div_id.split("_")[0];
-			var checkbox_element = document.getElementById(checkbox_id);
+			all_checkbox_divs[i].onclick = function (e) {
+				var div_id = this.id;
+				var checkbox_id =div_id.split("_")[0];
+				var checkbox_element = document.getElementById(checkbox_id);
 
-			if (checkbox_element.checked == true) {
-				checkbox_element.checked = false;
-				this.setAttribute("class","image-checkbox");
-			} else {
-				checkbox_element.checked = true;
-				this.setAttribute("class","image-checkbox-checked");
+				if (checkbox_element.checked == true) {
+					checkbox_element.checked = false;
+					this.setAttribute("class","image-checkbox");
+				} else {
+					checkbox_element.checked = true;
+					this.setAttribute("class","image-checkbox-checked");
+			}
+
+			};
 		}
 
-		};
 	}
-
-}
 </script>
+<style>
+	footer{
+		width:100%;
+		position:absolute;
+		bottom:0;
+		left:0;
+		right:0;
+		background-color:white;
+	}
+</style>
 <body>
 <nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container-fluid col-md-8" style="float:center;border-left:0px; border-right:0px; margin-left:auto; margin-right: auto;">

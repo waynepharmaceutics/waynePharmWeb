@@ -6,7 +6,7 @@
 {% block content %}
 {% load staticfiles %}
 {% load bootstrap3 %}
-	<script>
+<script>
 	function answer1() {
 		if(typeof(Storage) !== "undefined") {
 			if (sessionStorage.answer1) {
@@ -101,9 +101,19 @@
 		}
 		expandDiv("d_"+divno);
 	}
-	</script>
+</script>
+<style>
+	footer{
+		width:100%;
+		position:absolute;
+		bottom:0;
+		left:0;
+		right:0;
+		background-color:white;
+	}
+</style>
 
-	<title>Div Tag Enabling or Disabling using Javascript </title>
+<title>Questionairre Results</title>
 <nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
