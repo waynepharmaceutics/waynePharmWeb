@@ -147,7 +147,7 @@ function load() {
 </script>
 <body>
 <nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container-fluid">
+	<div class="container-fluid col-md-8" style="float:center;border-left:0px; border-right:0px; margin-left:auto; margin-right: auto;">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 			<span class="sr-only">Toggle navigation</span>
@@ -171,7 +171,7 @@ function load() {
 			<li><a href="/about/">About Us</a></li>
 			<li><a href="/contact/">Contact</a></li>
 			{% if user.is_authenticated %} 
-			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a></li>
+			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
 			<li id="menu-gap"><a href="/logout/"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
 			{% else %} 
 			<li id="menu-gap"><a href="/login/"><span class="glyphicon glyphicon-home"></span> Login</a></li>
@@ -347,14 +347,17 @@ function load() {
 	</section>
 	<div id="buildquestion">
 		<h2 align="center" class="question">What is your age group?</h2><br/>
-		<label for="img8"><img class="imga" src="{% static "creamUsers/images/under25.png" %}" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-		<input type="checkbox" class="chk " id="img8" name="button3" style="visibility:hidden" value="test1"></input></label>
+		<label for="img8"><img class="imga" src="{% static "creamUsers/images/under25.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+		<input type="checkbox" class="chk " id="img8" name="button3" style="visibility:hidden" value="test1"></input></label><br/>
 	
-		<label for="img9"><img class="imga" src="{% static "creamUsers/images/allday.png" %}" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-		<input type="checkbox" class="chk " id="img9" name="button3" style="visibility:hidden" value="test2"></input></label>
+		<label for="img9"><img class="imga" src="{% static "creamUsers/images/26to35.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+		<input type="checkbox" class="chk " id="img9" name="button3" style="visibility:hidden" value="test2"></input></label><br/>
 	
-		<label for="img10"><img class="imga" src="{% static "creamUsers/images/nighttime.png" %}" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-		<input type="checkbox" class="chk " id="img10" name="button3" style="visibility:hidden" value="test3"></input></label>
+		<label for="img10"><img class="imga" src="{% static "creamUsers/images/36to49.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+		<input type="checkbox" class="chk " id="img10" name="button3" style="visibility:hidden" value="test3"></input></label><br/>
+		
+		<label for="img11"><img class="imga" src="{% static "creamUsers/images/50plus.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+		<input type="checkbox" class="chk " id="img11" name="button3" style="visibility:hidden" value="test3"></input></label><br/>
 		
 		<div id="buttons text-align:center"><br/>
 			<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_3');expandDiv('q_2')" Value="Previous">
@@ -415,13 +418,13 @@ function load() {
 	</div>
 	<div id="buildquestion">
 		<h2 align="center" class="question">When do you most often apply facial creams?</h2><br/>
-		<label for="img11"><img class="imga" src="{% static "creamUsers/images/morning.png" %}">
+		<label for="img12"><img class="imga" src="{% static "creamUsers/images/morning.png" %}">
 		<input type="checkbox" class="chk " id="img11" name="button4" style="visibility:hidden" value="test4" onclick="toggle_visibility('q_4');expandDiv('q_5')"></input></label>
 	
-		<label for="img12"><img class="imga" src="{% static "creamUsers/images/allday.png" %}">
+		<label for="img13"><img class="imga" src="{% static "creamUsers/images/allday.png" %}">
 		<input type="checkbox" class="chk " id="img12" name="button4" style="visibility:hidden" value="test5" onclick="toggle_visibility('q_4');expandDiv('q_5')"></input></label>
 	
-		<label for="img13"><img class="imga" src="{% static "creamUsers/images/nighttime.png" %}">
+		<label for="img14"><img class="imga" src="{% static "creamUsers/images/nighttime.png" %}">
 		<input type="checkbox" class="chk " id="img13" name="button4" style="visibility:hidden" value="test6" onclick="toggle_visibility('q_4');expandDiv('q_5')"></input></label>
 		
 		<div id="buttons text-align:center"><br/>
