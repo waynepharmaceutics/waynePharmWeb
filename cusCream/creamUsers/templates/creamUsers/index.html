@@ -31,12 +31,12 @@
 			<li><a href="/contact/">Contact</a></li>
 			<!--This SIGNUP and LOGIN function needs to hook on to backend-->
 			{% if user.is_authenticated %} 
-			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a></li>
-			<li id="menu-gap"><a href="/logout/"><span class="glyphicon glyphicon-off"></span>Logout</a></li>
+			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
+			<li id="menu-gap"><a href="/logout/"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
 			{% else %} 
-			<li id="menu-gap"><a href="/login/"><span class="glyphicon glyphicon-home"></span>Login</a></li>
+			<li id="menu-gap"><a href="/login/"><span class="glyphicon glyphicon-home"></span> Login</a></li>
 			{% endif %} 
-			<li><a href="{% url 'creamUsers:cartdetail' %}"><span class="glyphicon glyphicon-shopping-cart"></span>My Cart</a></li>
+			<li><a href="{% url 'creamUsers:cartdetail' %}"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
 		  </ul>
 		</div>
 	  </div>
