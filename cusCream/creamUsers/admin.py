@@ -1,5 +1,5 @@
 from django.contrib import admin
-from creamUsers.models import Answer, Ingredient, Product, Skinuser, Shippingaddress, Useraddress
+from creamUsers.models import *
 
 
 # Register your models here.
@@ -24,3 +24,7 @@ class AddressAdmin(admin.ModelAdmin):
 admin.site.register(Shippingaddress, AddressAdmin)
 
 admin.site.register(Useraddress)
+
+class OrderAdmin(admin.ModelAdmin):
+	list_display = ('cart', 'skinuser', 'address')
+admin.site.register(Order)

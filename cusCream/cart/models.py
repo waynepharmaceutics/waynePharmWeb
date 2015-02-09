@@ -14,6 +14,32 @@ class Cart(models.Model):
 
     def __unicode__(self):
         return unicode(self.creation_date)
+    
+    def summary (self):
+        total = 0
+        for item in self.item_set.all:
+            total = total + item.unit_price
+        return total
+        
+    def add(self, product, unit_price, quantity=1):
+        try:
+            item = models.Item.objects.get(
+                cart=self.cart,
+                product=product,
+            )
+        except: #Item does not exist
+            item = models.Item()
+            item.cart = self.cart
+            item.product = product
+            item.unit_price = unit_price
+            item.quantity = quantity
+            item.save()
+        else: #ItemAlreadyExists
+            item.unit_price = unit_price
+            item.quantity = item.quantity + int(quantity)
+            if item.quantity < 1:
+                item.quantity = 1
+            item.save()
 
 class ItemManager(models.Manager):
     def get(self, *args, **kwargs):
@@ -33,8 +59,6 @@ class Item(models.Model):
 
     objects = ItemManager()
 
-    product_options = models.ManyToManyField("ItemOption", blank=True)
-
     class Meta:
         verbose_name = _('item')
         verbose_name_plural = _('items')
@@ -43,13 +67,13 @@ class Item(models.Model):
     def __unicode__(self):
         return u'%d units of %s' % (self.quantity, self.product.__class__.__name__)
 
-    @property
     def total_price(self):
         return self.quantity * self.unit_price
+    total_price = property(total_price)
 
     # product
     def get_product(self):
-        return self.content_type.get_object_for_this_type(id=self.object_id)
+        return self.content_type.get_object_for_this_type(pk=self.object_id)
 
     def set_product(self, product):
         self.content_type = ContentType.objects.get_for_model(type(product))
@@ -57,28 +81,3 @@ class Item(models.Model):
 
     product = property(get_product, set_product)
 
-    # options
-    def get_options(self):
-        return [o.option for o in self.itemoption_set.all()]
-
-    def set_options(self, options):
-        for option in options:
-            itemoption = ItemOption(content_type = ContentType.objects.get_for_model(type(option)), object_id = option.pk)
-            itemoption.save()
-            self.product_options.add(itemoption)
-
-    def clear_options(self):
-        return self.product_options.clear()
-
-    options = property(get_options, set_options)
-
-
-class ItemOption(models.Model):
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
-
-    # options
-    def get_option(self):
-        return self.content_type.get_object_for_this_type(id=self.object_id)
-
-    option = property(get_option)

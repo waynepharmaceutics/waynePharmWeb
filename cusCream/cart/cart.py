@@ -1,6 +1,8 @@
 import datetime
 import models
 
+CART_ID = 'CART-ID'
+
 class ItemAlreadyExists(Exception):
     pass
 
@@ -8,9 +10,8 @@ class ItemDoesNotExist(Exception):
     pass
 
 class Cart:
-    def __init__(self, request, session_key='MAIN_CART_ID'):
-        self.session_key = session_key
-        cart_id = request.session.get(self.session_key)
+    def __init__(self, request):
+        cart_id = request.session.get(CART_ID)
         if cart_id:
             try:
                 cart = models.Cart.objects.get(id=cart_id, checked_out=False)
@@ -20,20 +21,17 @@ class Cart:
             cart = self.new(request)
         self.cart = cart
 
-    def __iter__(self, **kwargs):
-        self.get_items()
-
-    def get_items(self, **kwargs):
-        for item in self.cart.item_set.filter(**kwargs):
+    def __iter__(self):
+        for item in self.cart.item_set.all():
             yield item
 
     def new(self, request):
         cart = models.Cart(creation_date=datetime.datetime.now())
         cart.save()
-        request.session[self.session_key] = cart.id
+        request.session[CART_ID] = cart.id
         return cart
 
-    def add(self, product, unit_price, quantity=1, override_quantity=False, options=None):
+    def add(self, product, unit_price, quantity=1):
         try:
             item = models.Item.objects.get(
                 cart=self.cart,
@@ -45,19 +43,12 @@ class Cart:
             item.product = product
             item.unit_price = unit_price
             item.quantity = quantity
-
             item.save()
-            
-            if options:
-                item.options = options
         else: #ItemAlreadyExists
-
-            if options:
-                item.clear_options()
-                item.options = options
-                
             item.unit_price = unit_price
-            item.quantity = quantity if override_quantity else item.quantity + int(quantity)
+            item.quantity = item.quantity + int(quantity)
+            if item.quantity < 1:
+                item.quantity = 1
             item.save()
 
     def remove(self, product):
@@ -95,4 +86,13 @@ class Cart:
     def clear(self):
         for item in self.cart.item_set.all():
             item.delete()
-
+            
+    def isEmpty(self):
+        result = 0
+        for item in self.cart.item_set.all():
+            result += 1 * item.quantity
+        if result>0:
+            return false
+        else:
+            return true
+        

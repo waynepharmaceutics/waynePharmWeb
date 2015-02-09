@@ -139,36 +139,67 @@
 		</div>
 	</div>
 </nav>
+
+
 	<div id="q_5" style="">
 	<div id="buildtitle">
 	<h2><center/><strong/><br/></h2>
 	<br/><br/><br/>
 	</div>
-
 	<div id="buildquestion">
-		<h2 class="question">Questionnaire Complete! Here are your results...</h2><br/><br/>
-		{% if answer %}
-			<p>Your responses are the followings: {{answer.question1}}, {{answer.question2}}, {{answer.question3}}, {{answer.question4}}</p>
-		{% endif %}
-		<p>Based on your responses, we recommend the following combinations:</p>
-		<form action="">
-			<p>Cream Base Thickness:</p>
-			<p>{{ingredient1.ingreName}}: {{ingredient1.description}}</p>
+		<h2 class="question">{{"Further Customizing!"}}</h2><br/><br/>
+		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+	{% if messages %}
+		<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	{% endif %}
+		<form action = "{% url 'creamUsers:saveEditResult' product.id %}" method = "post">
+			{% csrf_token %}
+			<p>Select Your Cream Base:</p>
+			
+			<select id="base" name="base" onchange="updateText('base')">
+			{% for ingre in ingredients %}
+				{%if ingre.inType == "CreamBase"%}
+					{%if ingre.ingreName == ingredient1.ingreName%} 
+						<option name = "base" value="{{ingre.id}}" selected="selected">{{ingre.ingreName}}</option>
+					{%else%}
+						<option name = "base" value="{{ingre.id}}">{{ingre.ingreName}}</option>
+					{%endif%}
+				{%endif%}
+			{% endfor %}
+			</select>
+			<input type="text" value="{{ingredient1.description}}" id="baseText" />
 			<br/><br/>
-		</form>
-		<form action="">
-			<p>Penetration agent:</p>
-			<p>{{ingredient2.ingreName}}: {{ingredient2.description}}</p>
+			
+			
+			<p>Select Your Penetrate Agent:</p>
+			<select id="penetrate" name="penetrate" onchange="updateText('penetrate')">
+			{% for ingre in ingredients %}
+				{%if ingre.inType == "PenetrateAgent"%}
+					{%if ingre.ingreName == ingredient2.ingreName%} 
+						<option name = "penetrate" value="{{ingre.id}}" selected="selected">{{ingre.ingreName}}</option>
+						<br/><p>{{ingre.description}}</p>
+					{%else%}
+						<option name = "penetrate" value="{{ingre.id}}">{{ingre.ingreName}}</option>
+					{%endif%}
+				{%endif%}
+			{% endfor %}
+			</select>
+			<input type="text" value="{{ingredient2.description}}" id="penetrateText" />
 			<br/><br/>
+			 <input type="submit" value="Done" />
 		</form>
-		<div id="buttons">
-		<a href = "{% url 'creamUsers:addproduct' product.id%}"> <h3><blue>Yes, my skin wants this!</blue></h3> </a>
-		</div>
-		<div id="buttons">
-			<a href = "{% url 'creamUsers:editProd' product.id %}"> <h3><blue>I want to customize further.</blue></h3> </a>
-		</div>
 	</div>
 </div>
-
+<script type="text/javascript">
+	function updateText(type) { 
+		var id = type+'Text';
+		document.getElementById(id).value =document.getElementById(type).value ;
+	}
+</script>
 
 {% endblock %}
