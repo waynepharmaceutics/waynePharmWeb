@@ -6,20 +6,61 @@
 {% block content %}
 {% load staticfiles %}
 {% load bootstrap3 %}
-	<script>
-	function answer1() {
-		if(typeof(Storage) !== "undefined") {
-			if (sessionStorage.answer1) {
-				sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
-			} else {
-				sessionStorage.clickcount = 1;
-			}
-			document.getElementById("result").innerHTML = "You have clicked the button " + sessionStorage.clickcount + " time(s) in this session.";
-		} else {
-			document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
-		}
+<style>
+	footer{
+		width:100%;
+		height:180px;
+		position:absolute;
+		bottom:0;
+		left:0;
+		right:0;
+		background-color:white;
 	}
-	</script>
+	form{
+		background: whitesmoke;
+		top:30%;
+		margin-left:auto;
+		margin-right:auto;
+		height:500px; 
+		width:500px;
+		border: 5px solid black; 
+		padding:30px; border-radius:50%
+	}
+	#yes{
+		padding:5px;
+		font-family:Museo; 
+		margin-left:auto; 
+		margin-right:auto; 
+		width:200px; 
+		border:3px solid black;
+		color:white;
+		background-color:black;
+	}
+	#yes:hover{
+		background-color:white;
+		color:black;
+	}
+	select#base{
+		margin-top:10px;
+		font-size:16px;
+		color:black;
+		background-color:white;
+		font-family:Museo;
+		border:2px solid black;
+	}
+	select#penetrate{
+		margin-top:10px;
+		font-size:16px;
+		color:black;
+		background-color:white;
+		font-family:Museo;
+		border:2px solid black;
+	}
+	#buttons{
+		
+	}
+</style>
+<script>
 
 	<script language="javascript" type="text/javascript">
 	var tot=3;       
@@ -101,11 +142,12 @@
 		}
 		expandDiv("d_"+divno);
 	}
-	</script>
+</script>
 
-	<title>Div Tag Enabling or Disabling using Javascript </title>
+
+<title>Customizing your cream </title>
 <nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container-fluid">
+	<div class="container-fluid col-md-8" style="float:center;border-left:0px; border-right:0px; margin-left:auto; margin-right: auto;">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 			<span class="sr-only">Toggle navigation</span>
@@ -141,76 +183,72 @@
 </nav>
 
 
-	<div id="q_5" style="">
-	<div id="buildtitle">
-	<h2><center/><strong/><br/></h2>
-	<br/><br/><br/>
-	</div>
-	<div id="buildquestion">
-		<h2 class="question">{{"Further Customizing!"}}</h2><br/><br/>
-		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+<div id="buildquestion"><br/><br/>
+	<h2 class="question">{{"Tell us how you want your cream!"}}</h2><br/>
+	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 	{% if messages %}
-		<ul class="messages">
-		{% for message in messages %}
-		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-		{% endfor %}
-		</ul>
+	<ul class="messages">
+	{% for message in messages %}
+	<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	{% endfor %}
+	</ul>
 	{% endif %}
-		<form action = "{% url 'creamUsers:saveEditResult' product.id %}" method = "post">
-			{% csrf_token %}
-			<p>Select Your Cream Base:</p>
-			
-			<select id="base" name="base" onchange="updateText('base')">
-			{% for ingre in ingredients %}
-				{%if ingre.inType == "CreamBase"%}
-					{%if ingre.ingreName == ingredient1.ingreName%} 
-						<option name = "base" value="{{ingre.id}}" selected="selected">{{ingre.ingreName}}</option>
-					{%else%}
-						<option name = "base" value="{{ingre.id}}">{{ingre.ingreName}}</option>
-					{%endif%}
-				{%endif%}
+	<form action = "{% url 'creamUsers:saveEditResult' product.id %}" method = "post">
+		{% csrf_token %}
+	<div id="outer" style="height:190px"><br/>
+		<h4><strong style="border-bottom:1px solid black">Your Cream Base:</strong></h4>
+		<select id="base" name="base" onchange="updateText('base')">
+		{% for ingre in ingredients %}
+			{%if ingre.inType == "CreamBase"%}
+			{%if ingre.ingreName == ingredient1.ingreName%} 
+				<option name = "base" value="{{ingre.id}}" selected="selected">{{ingre.ingreName}}</option>
+			{%else%}
+				<option name = "base" value="{{ingre.id}}">{{ingre.ingreName}}</option>
+			{%endif%}
+			{%endif%}
 			{% endfor %}
-			</select>
-			<div id="layout_select1" class="1">
-				<br/><p>A thicker cream base may work best for those with very dry skin.</p>			
-			</div>
-			<div id="layout_select2" class="2" style="display:none">
-				<br/><p>A regular density cream base may work best for users with normal skin.</p>
-			</div>
-			<div id="layout_select3" class="3" style="display:none">
-				<br/><p>A thinner style cream may best suit a user with oily or sensitive skin.</p>
-			</div>
-			<br/><br/>
-			
-			
-			<p>Select Your Penetrate Agent:</p>
-			<select id="penetrate" name="penetrate" onchange="updateText('penetrate')">
-			{% for ingre in ingredients %}
-				{%if ingre.inType == "PenetrateAgent"%}
-					{%if ingre.ingreName == ingredient2.ingreName%} 
-						<option name = "penetrate" value="{{ingre.id}}" selected="selected">{{ingre.ingreName}}</option>
-						<br/><p>{{ingre.description}}</p>
-					{%else%}
-						<option name = "penetrate" value="{{ingre.id}}">{{ingre.ingreName}}</option>
-					{%endif%}
-				{%endif%}
-			{% endfor %}
-			</select>
-			<input type="text" value="{{ingredient2.description}}" id="penetrateText" />
-			<br/><br/>
-			 <input type="submit" value="Done" />
-		</form>
-		<div id="layout_select1" style="display:none">
+		</select>
+		<strong>
+		<div id="layout_select1" class="1">
+			<br/><p>A thicker cream base may work best for those with very dry skin.</p>			
+		</div>
+		<div id="layout_select2" class="2" style="display:none">
+			<br/><p>A regular density cream base may work best for users with normal skin.</p>
+		</div>
+		<div id="layout_select3" class="3" style="display:none">
 			<br/><p>A thinner style cream may best suit a user with oily or sensitive skin.</p>
 		</div>
-		<div id="layout_select2" style="display:none">
-			<br/><p>A thinner style cream may best suit a user with oily or sensitive skin.</p>
-		</div>
-		<div id="layout_select3" style="display:none">
-			<br/><p>A thinner style cream may best suit a user with oily or sensitive skin.</p>
-		</div>
+		</strong>
 	</div>
+			
+	<div id="outer" style="height:130px">
+		<h4><strong style="border-bottom:1px solid black">Your Penetrate Agent:</strong></h4>
+		<select id="penetrate" name="penetrate" onchange="updateText('penetrate')">
+		{% for ingre in ingredients %}
+			{%if ingre.inType == "PenetrateAgent"%}
+				{%if ingre.ingreName == ingredient2.ingreName%} 
+					<option name = "penetrate" value="{{ingre.id}}" selected="selected">{{ingre.ingreName}}</option>
+					<br/><p>{{ingre.description}}</p>
+				{%else%}
+					<option name = "penetrate" value="{{ingre.id}}">{{ingre.ingreName}}</option>
+				{%endif%}
+			{%endif%}
+		{% endfor %}
+		</select>
+		<strong>
+		<div id="second_select1" class="4">
+			<br/><p>Glycerin may work better for those with dry or sensitive skin</p>		
+		</div>
+		<div id="second_select2" class="5" style="display:none">
+			<br/><p>Propylene Glycol may work better for those with oily or normal skin</p>
+		</div>
+		</strong>
+	</div>
+	<div id="buttons" style="height:130px"><br/>
+		<a href = "{% url 'creamUsers:addproduct' product.id%}"> <h4 id="yes">Done Customizing</h4> </a>
+	</div>
+	</form>
 </div>
 <script type="text/javascript">
 	function updateText(type) { 
@@ -221,6 +259,12 @@
 <script type="text/javascript">
 	$("#base").change(function() {         
 	$('div[id^=layout_select]').hide('slow');
+	$('.'+this.value).show('slow');  
+	});
+</script>
+<script type="text/javascript">
+	$("#penetrate").change(function() {         
+	$('div[id^=second_select]').hide('slow');
 	$('.'+this.value).show('slow');  
 	});
 </script>
