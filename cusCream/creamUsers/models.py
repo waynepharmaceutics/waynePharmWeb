@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from cart.models import Cart
+#from cart.models import Cart
 
 # Create your models here.
 
@@ -72,7 +72,6 @@ class Useraddress (models.Model):
 	address = models.ForeignKey(Shippingaddress)
 
 #one to one relationship
-class Order (models.Model):
-	cart = models.ForeignKey(Cart)
-	skinuser = models.ForeignKey(Skinuser, null=True, blank=True)
-	address = models.ForeignKey(Shippingaddress)
+class Userproduct (models.Model):
+	skinuser = models.ForeignKey(Skinuser)
+	product = models.ForeignKey(Product)

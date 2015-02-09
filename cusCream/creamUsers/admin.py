@@ -25,6 +25,6 @@ admin.site.register(Shippingaddress, AddressAdmin)
 
 admin.site.register(Useraddress)
 
-class OrderAdmin(admin.ModelAdmin):
-	list_display = ('cart', 'skinuser', 'address')
-admin.site.register(Order)
+class UserproductAdmin(admin.ModelAdmin):
+	list_display = ('skinuser', 'product')
+admin.site.register(Userproduct)

@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from creamUsers.forms import RegistrationForm, LoginForm
-from cart import models
+from carton.cart import Cart
 
 ############################Build Product & Select Answer#####################
 
@@ -155,28 +155,28 @@ def LogoutRequest(request):
 
 ##################Below Code Deal With Carts##################################
 def Cartdetail(request):
-	return render_to_response('creamUsers/cart.html', dict(cart=Cart(request)), context_instance = RequestContext (request))
+	return render(request, 'creamUsers/cart.html')
 	
 def AddProduct (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
-	cart = Cart(request)
-	cart.add(prod, prod.price, 1)
-	return render(request, 'creamUsers/cart.html', {'cart':cart,})
+	cart = Cart(request.session)
+	cart.add(prod, prod.price)
+	return render(request, 'creamUsers/cart.html')
 
 def Plusone (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
-	cart = Cart(request)
-	cart.add(prod, prod.price, 1)
-	return HttpResponseRedirect(reverse('creamUsers:cartdetail',args=request))
+	cart = Cart(request.session)
+	cart.add(prod, prod.price)
+	return render(request, 'creamUsers/cart.html')
 
 def Minusone (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
-	cart = Cart(request)
-	cart.add(prod, prod.price, -1)
-	return HttpResponseRedirect(reverse('creamUsers:cartdetail',args=request))
+	cart = Cart(request.session)
+	cart.remove_single(prod)
+	return render(request, 'creamUsers/cart.html')
 
 def Removeproduct (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
-	cart = Cart(request)
+	cart = Cart(request.session)
 	cart.remove(prod)
-	return HttpResponseRedirect(reverse('creamUsers:cartdetail',args=request))
+	return render(request, 'creamUsers/cart.html')

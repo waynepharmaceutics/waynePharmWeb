@@ -50,7 +50,10 @@
 <span id="aboutsection">
 <div class="aboutmain">
 
-	{% if cart.isEmpty %}
+{% load carton_tags %}
+{% get_cart as cart %}
+
+{% ifnotequal cart.count 0 %}
 
 <table>
 	<tr>
@@ -59,13 +62,13 @@
 		<th>Total Price</th>
 		<th>Actions</th>
 	</tr>
-	{% for item in cart.get_items %}
+	{% for item in cart.items %}
 	<tr>
 		<td><a href = "{% url 'creamUsers:resultNoAnswer' item.product.id %}">Skin Product {{forloop.counter}}</a>{{item.product.name}}</td>
 		<td>{{ item.quantity }}</td>
-		<td> ${{ item.total_price }}</td>
+		<td> ${{ item.subtotal }}</td>
 		<td> 
-			<a href = "{% url 'creamUsers:plus' item.product.id %}">plus</a>
+			<a href = "{% url 'creamUsers:addproduct' item.product.id %}">plus</a>
 			<a href = "{% url 'creamUsers:minus' item.product.id %}">minus</a>
 			<a href = "{% url 'creamUsers:remove' item.product.id %}">remove </a>
 			<a href = "{% url 'creamUsers:editProd' item.product.id %}">edit </a>
@@ -74,14 +77,14 @@
 	{% endfor %}
 </table>
 
-<p> Total is ${{cart.summary}} </p>
+<p> Total is ${{cart.total}} </p>
 
 <p><a href = "/">Continue to Explore</a> </p>
 <p><a href = "#" > Check Out </a></p>
 
 {% else %}
 <p> You shopping cart is empty. Please select your product by clicking on the <a href = "/build/">survey</a>. </p>
-{% endif %}
+{% endifnotequal %}
 
 </div>
 </span>

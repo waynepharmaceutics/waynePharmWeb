@@ -43,6 +43,8 @@ LOGIN_URL = '/login/'
 # redirect authenticated users
 LOGIN_REDIRECT_URL = '/users/'
 
+CART_PRODUCT_MODEL = 'creamUsers.models.Product'
+
 # use the template directory
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".	
@@ -65,8 +67,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
-    'cart',
-    
+    'carton',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,6 +84,16 @@ ROOT_URLCONF = 'cusCream.urls'
 
 WSGI_APPLICATION = 'cusCream.wsgi.application'
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+"django.contrib.auth.context_processors.auth",
+"django.core.context_processors.debug",
+"django.core.context_processors.i18n",
+"django.core.context_processors.media",
+"django.core.context_processors.static",
+"django.core.context_processors.tz",
+"django.contrib.messages.context_processors.messages",
+'django.core.context_processors.request',  # added for django-formsbuilder
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
