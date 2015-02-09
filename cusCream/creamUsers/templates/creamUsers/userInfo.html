@@ -59,7 +59,17 @@
 		</ul>
 	{% endif %}
 	
-	<p>This page is created for place holder user information page. This page will display user information and its order history, answer history</p>
+	{% if user.is_authenticated %}
+		<p>Welcome {{user.skinuser.firstname}} {{user.skinuser.lastname}}!</p>
+		<p>You have wanted below products</p>
+		{%for userprod in skinuser.userproduct_set.all%}
+			<p>{{userprod.product.id}}</p>
+			<br/>
+		{%endfor%}
+	{% else %}
+		<p>Please log in to see your user profile</p>
+	{% endif %} 
+	
 </div>
 </span>
 

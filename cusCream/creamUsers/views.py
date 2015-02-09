@@ -135,6 +135,13 @@ def LoginRequest(request):
 			skinuser = authenticate(username=username, password = password)
 			if skinuser is not None:
 				login(request,skinuser)
+				# if there is cart items, add all products in the userProfile
+				cart = Cart(request.session)
+				for product in cart.products:
+					userproduct = Userproduct(skinuser = skinuser, product = product)
+					userproduct.save()
+				
+				## deals with loading logging page
 				if next:
 					# redirect to the previous page
 					return HttpResponseRedirect('/%s' % next)
@@ -161,6 +168,11 @@ def AddProduct (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
 	cart = Cart(request.session)
 	cart.add(prod, prod.price)
+	if request.user.is_authenticated():
+		skinuser = request.user.get_profile()
+		if prod not in skinuser.getProfiles():
+			userproduct = Userproduct(skinuser = skinuser, product = prod)
+			userproduct.save()
 	return render(request, 'creamUsers/cart.html')
 
 def Plusone (request, product_id):
@@ -179,4 +191,9 @@ def Removeproduct (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
 	cart = Cart(request.session)
 	cart.remove(prod)
+	if request.user.is_authenticated():
+		skinuser = request.user.get_profile()
+		if prod in skinuser.getProducts():
+			up = Userproducts.objects.get(skinuser = skinuser, product = prod)
+			up.delete()
 	return render(request, 'creamUsers/cart.html')
