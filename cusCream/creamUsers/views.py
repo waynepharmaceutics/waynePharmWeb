@@ -169,31 +169,31 @@ def AddProduct (request, product_id):
 	cart = Cart(request.session)
 	cart.add(prod, prod.price)
 	if request.user.is_authenticated():
-		skinuser = request.user.get_profile()
-		if prod not in skinuser.getProfiles():
+		skinuser = request.user.skinuser
+		if prod not in skinuser.getProducts():
 			userproduct = Userproduct(skinuser = skinuser, product = prod)
 			userproduct.save()
-	return render(request, 'creamUsers/cart.html')
+	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
 
 def Plusone (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
 	cart = Cart(request.session)
 	cart.add(prod, prod.price)
-	return render(request, 'creamUsers/cart.html')
+	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
 
 def Minusone (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
 	cart = Cart(request.session)
 	cart.remove_single(prod)
-	return render(request, 'creamUsers/cart.html')
+	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
 
 def Removeproduct (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
 	cart = Cart(request.session)
 	cart.remove(prod)
 	if request.user.is_authenticated():
-		skinuser = request.user.get_profile()
+		skinuser = request.user.skinuser
 		if prod in skinuser.getProducts():
-			up = Userproducts.objects.get(skinuser = skinuser, product = prod)
+			up = Userproduct.objects.get(skinuser = skinuser, product = prod)
 			up.delete()
-	return render(request, 'creamUsers/cart.html')
+	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))

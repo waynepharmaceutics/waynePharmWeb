@@ -28,25 +28,25 @@ class Product (models.Model):
 
 # All below classes deal with users, their products and their purchase
 class Skinuser (models.Model):
-	user = models.OneToOneField(User)
+	user = models.OneToOneField(User, related_name='skinuser')
 	birthday = models.DateField()
 	firstname = models.CharField(max_length = 100)
 	lastname = models.CharField(max_length = 100)
 	def __unicode__(self):
 		return self.firstname + ' ' + self.lastname
 	def getProducts(self):
-		userprofiles = self.userproduct_set.all()
-		profiles = []
-		for profile in userprofiles:
-			profiles.append(profile.profile)
-		return profiles
+		userproducts = self.userproduct_set.all()
+		products = []
+		for product in userproducts:
+			products.append(product.product)
+		return products
 	def getAddresses(self):
 		useraddresses = self.useraddress_set.all()
 		addresses = []
 		for address in useraddresses:
 			addresses.append(address.address)
 		return addresses
-
+	
 #deals with ordering and carts
 class Shippingaddress (models.Model):
 	name = models.CharField(max_length = 100)

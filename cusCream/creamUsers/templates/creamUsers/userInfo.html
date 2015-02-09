@@ -62,7 +62,7 @@
 	{% if user.is_authenticated %}
 		<p>Welcome {{user.skinuser.firstname}} {{user.skinuser.lastname}}!</p>
 		<p>You have wanted below products</p>
-		{%for userprod in skinuser.userproduct_set.all%}
+		{%for userprod in user.skinuser.userproduct_set.all%}
 			<p>{{userprod.product.id}}</p>
 			<br/>
 		{%endfor%}
