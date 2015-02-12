@@ -26,7 +26,7 @@ def selectAnswers(request):
 		answer2=request.POST['button2']
 		answer3=request.POST['button3']
 		answer4=request.POST['button4']
-	except (KeyError, Choice.DoesNotExist):
+	except KeyError:
 				# Redisplay the step 1 selection form.
 		return render(request, 'creamUsers/build.html', {'error_message': "We apologize that some of your choice is not captured correctly. Please build your skin profile again.",})						  
 	else:
@@ -202,22 +202,20 @@ def Removeproduct (request, product_id):
 	
 #########################Below Code is Created for Paypal#####################
 def checkOutWithPaypal(request):
-
 	cart = Cart(request.session)
 	money = cart.total
 	# What you want the button to do.
 	paypal_dict = {
 		"business": settings.PAYPAL_RECEIVER_EMAIL,
 		"amount": money,
-		"item_name": "name of the item",
+		"item_name": "Wayne Pharmaceutics Custom Cream",
 		"invoice": "unique-invoice-id",
 		"notify_url": reverse('paypal:paypal-ipn'),
 		"return_url": "/",
 		"cancel_return": "/",
-
 	}
 
 	# Create the instance.
 	form = PayPalPaymentsForm(initial=paypal_dict)
 	context = {"form": form}
-	return render_to_response("creamUsers/payment.html", context)
+	return render_to_response("creamUsers/payment.html", context, context_instance = RequestContext (request))

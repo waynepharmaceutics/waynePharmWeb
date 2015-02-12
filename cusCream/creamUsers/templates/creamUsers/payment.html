@@ -64,39 +64,27 @@
 
 {% load carton_tags %}
 {% get_cart as cart %}
-
-{% ifnotequal cart.count 0 %}
-
-<table>
+<h1>Order Summary</h1>
+<!-- writes out the form tag automatically -->
+	<table>
 	<tr>
 		<th>Product</th>
 		<th>Quantity</th>
 		<th>Total Price</th>
-		<th>Actions</th>
 	</tr>
 	{% for item in cart.items %}
 	<tr>
 		<td><a href = "{% url 'creamUsers:resultNoAnswer' item.product.id %}">Skin Product {{forloop.counter}}</a>{{item.product.name}}</td>
 		<td>{{ item.quantity }}</td>
 		<td> ${{ item.subtotal }}</td>
-		<td> 
-			<a href = "{% url 'creamUsers:addproduct' item.product.id %}">plus</a>
-			<a href = "{% url 'creamUsers:minus' item.product.id %}">minus</a>
-			<a href = "{% url 'creamUsers:remove' item.product.id %}">remove </a>
-			<a href = "{% url 'creamUsers:editProd' item.product.id %}">edit </a>
-		</td>
 	</tr>
 	{% endfor %}
 </table>
 
 <p> Total is ${{cart.total}} </p>
+{{ form.render }}
 
-<p><a href = "/">Continue to Explore</a> </p>
-<p><a href = "{% url 'creamUsers:checkout'%}" > Proceed to Check Out </a></p>
-
-{% else %}
-<p> You shopping cart is empty. Please select your product by clicking on the <a href = "/build/">survey</a>. </p>
-{% endifnotequal %}
+<p><a href = "{% url 'creamUsers:cartdetail'%}" > Return Back to Cart </a></p>
 
 </div>
 </span>

@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 
-# All below classes deal with answers and products
+######All below classes deal with answers and products#####################
 class Answer (models.Model) :
 	question1= models.CharField(max_length = 20)
 	question2= models.CharField(max_length = 20)
@@ -25,8 +25,9 @@ class Product (models.Model):
 	price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name=_('price'))
 	ingredient1 = models.ForeignKey(Ingredient, related_name='ingredient_cream')
 	ingredient2 = models.ForeignKey(Ingredient, related_name='ingredient_penetrate')
+	#TO DO: add a product name and/or description method
 
-# All below classes deal with users, their products and their purchase
+##########All below classes deal with users, their products#####################
 class Skinuser (models.Model):
 	user = models.OneToOneField(User, related_name='skinuser')
 	birthday = models.DateField()
@@ -40,6 +41,7 @@ class Skinuser (models.Model):
 		for product in userproducts:
 			products.append(product.product)
 		return products
+	#DEPRECATED
 	def getAddresses(self):
 		useraddresses = self.useraddress_set.all()
 		addresses = []
@@ -66,12 +68,28 @@ class Shippingaddress (models.Model):
 		address = address+self.state+" " + self.zipcode + "\n email: "+self.email
 		return address
 
+#DEPRECATED
 #one to many relationships
 class Useraddress (models.Model):
 	skinuser = models.ForeignKey(Skinuser)
 	address = models.ForeignKey(Shippingaddress)
 
-#one to one relationship
+#one to many relationship
 class Userproduct (models.Model):
 	skinuser = models.ForeignKey(Skinuser)
 	product = models.ForeignKey(Product)
+
+#####################This class is for order tracking###################
+# one to many relationships
+class Order(models.Model):
+	invoicenum = models.IntegerField(default=0)
+	product = models.ForeignKey(Product)
+	isPaid = models.BooleanField(default=False)
+	
+	# Implement invoice number
+	def generateInvoiceNum(self):
+		return None
+	
+	# get back a list of orders to flip is paid to false when returned back from paypal
+	def getOrderItemList(self, invoicenum):
+		return None

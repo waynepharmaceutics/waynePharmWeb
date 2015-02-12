@@ -60,10 +60,17 @@
 	{% endif %}
 	
 	{% if user.is_authenticated %}
-		<p>Welcome {{user.skinuser.firstname}} {{user.skinuser.lastname}}!</p>
-		<p>You have wanted below products</p>
-		{%for userprod in user.skinuser.userproduct_set.all%}
-			<p>{{userprod.product.id}}</p>
+		<p>Welcome {{user.username}}!</p>
+		<p>Below is your information</p>
+		<p>First Name: {{user.skinuser.firstname}}</p>
+		<p>Last Name: {{user.skinuser.lastname}}</p>
+		<p>Birthday: {{user.skinuser.birthday}} * We will send you a special gift on your birthday</p>
+		<p>Email: {{user.email}}</p>
+		
+		<br/><br/>
+		<p>In the past, you have wanted below products: </p>
+		{%for userprod in skinuser.userproduct_set.all%}
+			<p>{{userprod.product.id}} & description: place holder</p>
 			<br/>
 		{%endfor%}
 	{% else %}
