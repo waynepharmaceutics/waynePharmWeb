@@ -42,12 +42,14 @@ class Skinuser (models.Model):
 			products.append(product.product)
 		return products
 	#DEPRECATED
+	#!!!!!!!!!!!!!!!!!DEPRECATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	def getAddresses(self):
 		useraddresses = self.useraddress_set.all()
 		addresses = []
 		for address in useraddresses:
 			addresses.append(address.address)
 		return addresses
+	#!!!!!!!!!!!!!!!!!DEPRECATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	
 #deals with ordering and carts
 class Shippingaddress (models.Model):
@@ -68,11 +70,12 @@ class Shippingaddress (models.Model):
 		address = address+self.state+" " + self.zipcode + "\n email: "+self.email
 		return address
 
-#DEPRECATED
+#!!!!!!!!!!!!!!!!!DEPRECATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #one to many relationships
 class Useraddress (models.Model):
 	skinuser = models.ForeignKey(Skinuser)
 	address = models.ForeignKey(Shippingaddress)
+#!!!!!!!!!!!!!!!!!!!!!!End DEPRECATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #one to many relationship
 class Userproduct (models.Model):
@@ -80,16 +83,16 @@ class Userproduct (models.Model):
 	product = models.ForeignKey(Product)
 
 #####################This class is for order tracking###################
+# Implement generating invoice number, might need to move this function in view
+def generateInvoiceNum():
+	return 0
+
 # one to many relationships
 class Order(models.Model):
 	invoicenum = models.IntegerField(default=0)
 	product = models.ForeignKey(Product)
 	isPaid = models.BooleanField(default=False)
 	
-	# Implement invoice number
-	def generateInvoiceNum(self):
-		return None
-	
 	# get back a list of orders to flip is paid to false when returned back from paypal
 	def getOrderItemList(self, invoicenum):
-		return None
+		return self.get(invoicenum = invoicenum)
