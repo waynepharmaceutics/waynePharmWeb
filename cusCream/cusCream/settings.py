@@ -34,6 +34,10 @@ EMAIL_HOST_PASSWORD = 'dr4ko4462'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+# PAYPAL related information
+PAYPAL_RECEIVER_EMAIL = "wayne.pharmaceutics@gmail.com"
+PAYPAL_TEST = True
+
 # provide our get_profile()
 AUTH_PROFILE_MODULE = 'creamUsers.Skinuser'
 
@@ -68,6 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'bootstrap3',
     'carton',
+    'paypal.standard.ipn',
 )
 
 MIDDLEWARE_CLASSES = (

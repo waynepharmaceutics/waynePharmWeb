@@ -13,6 +13,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from creamUsers.forms import RegistrationForm, LoginForm
 from carton.cart import Cart
+from paypal.standard.forms import PayPalPaymentsForm
+from django.conf import settings
 
 ############################Build Product & Select Answer#####################
 
@@ -197,3 +199,25 @@ def Removeproduct (request, product_id):
 			up = Userproduct.objects.get(skinuser = skinuser, product = prod)
 			up.delete()
 	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
+	
+#########################Below Code is Created for Paypal#####################
+def checkOutWithPaypal(request):
+
+	cart = Cart(request.session)
+	money = cart.total
+	# What you want the button to do.
+	paypal_dict = {
+		"business": settings.PAYPAL_RECEIVER_EMAIL,
+		"amount": money,
+		"item_name": "name of the item",
+		"invoice": "unique-invoice-id",
+		"notify_url": reverse('paypal:paypal-ipn'),
+		"return_url": "/",
+		"cancel_return": "/",
+
+	}
+
+	# Create the instance.
+	form = PayPalPaymentsForm(initial=paypal_dict)
+	context = {"form": form}
+	return render_to_response("creamUsers/payment.html", context)
