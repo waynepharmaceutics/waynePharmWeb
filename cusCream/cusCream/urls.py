@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     
     #################DECIDING PRODUCTS AND CARTS##############################
     url(r'^users/', include('creamUsers.urls', namespace="creamUsers")),
+	
+	########################RELATED TO PAYPAL OPERATIONS#######################
+	(r'^something/paypal/', include('paypal.standard.ipn.urls',namespace="paypal")),
     
     ######################RELATED TO LOGGING IN###############################
     url(r'^register/$', 'creamUsers.views.CreamUserRegistration'),

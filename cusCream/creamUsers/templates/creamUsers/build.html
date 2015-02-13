@@ -5,20 +5,7 @@
 {% block content %}
 {% load staticfiles %}
 {% load bootstrap3 %}
-<script>
-	function answer1() {
-		if(typeof(Storage) !== "undefined") {
-			if (sessionStorage.answer1) {
-				sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
-			} else {
-				sessionStorage.clickcount = 1;
-			}
-			document.getElementById("result").innerHTML = "You have clicked the button " + sessionStorage.clickcount + " time(s) in this session.";
-		} else {
-			document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
-		}
-	}
-</script>
+
 <script language="javascript" type="text/javascript">
 	$("#ques1").click(function(){
 	alert($("#loll").val());

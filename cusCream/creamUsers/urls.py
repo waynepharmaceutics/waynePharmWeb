@@ -18,4 +18,8 @@ urlpatterns = patterns('',
 	url(r'^(?P<product_id>\d+)/plus/$', views.Plusone, name = 'plus'),
 	url(r'^(?P<product_id>\d+)/minus/$', views.Minusone, name = 'minus'),
 	url(r'^(?P<product_id>\d+)/remove/$', views.Removeproduct, name = 'remove'),
+	
+	########################RELATED TO PAYPAL OPERATIONS#######################
+	url(r'^checkout/$', views.checkOutWithPaypal, name = 'checkout'),
+	url(r'^(?P<invoice_num>\d+)/delete/$', views.paymentBackToCart, name = 'paymentBackToCart'),
 )
