@@ -254,7 +254,6 @@ def paymentBackToCart(request, invoice_num):
 	# use the invoicenum to delete all the related orders
 	Order.objects.filter(invoicenum=invoice_num).delete()
 	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
-<<<<<<< HEAD
 
 #displays the URL for return argument in the paypal form. Still under construction
 def paymentSuccess(request, invoice_num):
@@ -262,6 +261,3 @@ def paymentSuccess(request, invoice_num):
 	context = {"cart":cart, "invoicenum":invoice_num,}
 	return render_to_response("creamUsers/payment.html", context, context_instance = RequestContext (request))
 	
-=======
-	
->>>>>>> 36ebe2498f9c26bb910b7c8d94072342ad064e15
