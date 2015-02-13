@@ -241,16 +241,23 @@ def checkOutWithPaypal(request):
 		"item_name": "Wayne Pharmaceutics Custom Cream",
 		"invoice": "invoiceuid",
 		"notify_url": reverse('paypal:paypal-ipn'),
-		"return_url": "/",
+		"return": "/",
 		"cancel_return": "/",
 	}
 	# Create the instance.
 	form = PayPalPaymentsForm(initial=paypal_dict)
 	context = {"form": form, "invoicenum":invoiceuid, }
 	return render_to_response("creamUsers/payment.html", context, context_instance = RequestContext (request))
-	
+
+# deletes the previously added orders because the proceeds was canceled
 def paymentBackToCart(request, invoice_num):
 	# use the invoicenum to delete all the related orders
 	Order.objects.filter(invoicenum=invoice_num).delete()
 	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
+
+#displays the URL for return argument in the paypal form. Still under construction
+def paymentSuccess(request, invoice_num):
+	cart = Cart(request.session)
+	context = {"cart":cart, "invoicenum":invoice_num,}
+	return render_to_response("creamUsers/payment.html", context, context_instance = RequestContext (request))
 	
