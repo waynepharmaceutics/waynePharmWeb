@@ -91,6 +91,7 @@ def generateInvoiceNum():
 class Order(models.Model):
 	invoicenum = models.IntegerField(default=0)
 	product = models.ForeignKey(Product)
+	quantity = models.IntegerField(default=1)
 	isPaid = models.BooleanField(default=False)
 	
 	# get back a list of orders to flip is paid to false when returned back from paypal
