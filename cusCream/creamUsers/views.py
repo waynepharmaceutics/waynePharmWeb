@@ -15,6 +15,7 @@ from creamUsers.forms import RegistrationForm, LoginForm
 from carton.cart import Cart
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
+import datetime
 
 ############################Build Product & Select Answer#####################
 
@@ -201,21 +202,55 @@ def Removeproduct (request, product_id):
 	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
 	
 #########################Below Code is Created for Paypal#####################
+
+# define invoice number YYMMDD+4 digit num of the orders
+def invoiceNumGenerator():
+	now = datetime.datetime.now()
+	#get 2 digits of the year
+	year = now.year % 100
+	month = now.month
+	day = now.day
+	# calculate all the invoices in that day
+	invoicestarting = year*100000000+month*1000000+day*10000
+	# logic of getting invoice number
+	if Order.objects.all().count() >0:
+		# get the largest order digits number in order table
+		maxinvoice = Order.objects.all().order_by('-invoicenum')[0]
+		if invoicestarting< maxinvoice.invoicenum:
+			return maxinvoice.invoicenum+1
+		else:
+			return invoicestarting+1
+	else:
+		return invoicestarting+1
+	
+
 def checkOutWithPaypal(request):
 	cart = Cart(request.session)
 	money = cart.total
+	invoiceuid = invoiceNumGenerator()
+	# add all products in the cart to the order table and set isPaid to false
+	for item in cart.items:
+		#loop through # of items in order to add products
+		prod = get_object_or_404(Product, pk=item.product.id)
+		order = Order(invoicenum=invoiceuid, product=prod,quantity=item.quantity)
+		order.save()
 	# What you want the button to do.
 	paypal_dict = {
 		"business": settings.PAYPAL_RECEIVER_EMAIL,
 		"amount": money,
 		"item_name": "Wayne Pharmaceutics Custom Cream",
-		"invoice": "unique-invoice-id",
+		"invoice": "invoiceuid",
 		"notify_url": reverse('paypal:paypal-ipn'),
 		"return_url": "/",
 		"cancel_return": "/",
 	}
-
 	# Create the instance.
 	form = PayPalPaymentsForm(initial=paypal_dict)
-	context = {"form": form}
+	context = {"form": form, "invoicenum":invoiceuid, }
 	return render_to_response("creamUsers/payment.html", context, context_instance = RequestContext (request))
+	
+def paymentBackToCart(request, invoice_num):
+	# use the invoicenum to delete all the related orders
+	Order.objects.filter(invoicenum=invoice_num).delete()
+	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
+	

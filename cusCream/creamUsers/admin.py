@@ -28,3 +28,7 @@ admin.site.register(Useraddress)
 class UserproductAdmin(admin.ModelAdmin):
 	list_display = ('skinuser', 'product')
 admin.site.register(Userproduct)
+
+class OrderAdmin(admin.ModelAdmin):
+	list_display = ('invoicenum', 'product','quantity','isPaid')
+admin.site.register(Order, OrderAdmin)
