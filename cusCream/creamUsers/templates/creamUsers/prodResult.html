@@ -6,7 +6,7 @@
 {% block content %}
 {% load staticfiles %}
 {% load bootstrap3 %}
-<script>
+	<script>
 	function answer1() {
 		if(typeof(Storage) !== "undefined") {
 			if (sessionStorage.answer1) {
@@ -103,6 +103,19 @@
 	}
 </script>
 <style>
+	h4.h4link{
+		font-size:20px;
+		color:black;
+		background:white;	
+		width:300px;
+		margin-left:auto;
+		margin-right:auto;
+		padding:5px; 
+	}
+	h4.h4link:hover{
+		background:black;
+		color:white;
+	}
 	footer{
 		width:100%;
 		position:absolute;
@@ -149,36 +162,31 @@
 		</div>
 	</div>
 </nav>
-	<div id="q_5" style="">
 	<div id="buildtitle">
-	<h2><center/><strong/><br/></h2>
-	<br/><br/><br/>
+	<h2><center/><strong/></h2>
 	</div>
 
 	<div id="buildquestion">
-		<h2 class="question">Questionnaire Complete! Here are your results...</h2><br/><br/>
+		<h2 class="question">Based on the info you've provided, this is what we recommend...</h2><br/><br/>
 		{% if answer %}
-			<p>Your responses are the followings: {{answer.question1}}, {{answer.question2}}, {{answer.question3}}, {{answer.question4}}</p>
+			<h3>The information you've provided us:</h3><br/><p>You are {{answer.question3}} years old, and are {{answer.question4}}. <br/></p>
+			<p>You also have {{answer.question1}} skin, and apply your skin products {{answer.question2}}.</p>
 		{% endif %}
-		<p>Based on your responses, we recommend the following combinations:</p>
-		<form action="">
+		<br/><h3>What we recommend:</h3>
+		<form action=""><br/>
 			<p>Cream Base Thickness:</p>
 			<p>{{ingredient1.ingreName}}: {{ingredient1.description}}</p>
-			<br/><br/>
 		</form>
-		<form action="">
+		<form action=""><br/>
 			<p>Penetration agent:</p>
 			<p>{{ingredient2.ingreName}}: {{ingredient2.description}}</p>
 			<br/><br/>
 		</form>
 		<div id="buttons">
-		<a href = "{% url 'creamUsers:addproduct' product.id%}"> <h3><blue>Yes, my skin wants this!</blue></h3> </a>
-		</div>
-		<div id="buttons">
-			<a href = "{% url 'creamUsers:editProd' product.id %}"> <h3><blue>I want to customize further.</blue></h3> </a>
+		<a href = "{% url 'creamUsers:addproduct' product.id%}"><h4 class="h4link">Yes, my skin wants this!</h4></a>
+		<a href = "{% url 'creamUsers:editProd' product.id %}"><h4 class="h4link">I'd like to change a few things.</h4></a>
 		</div>
 	</div>
-</div>
 
 
 {% endblock %}

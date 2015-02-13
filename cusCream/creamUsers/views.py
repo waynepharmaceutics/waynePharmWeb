@@ -29,7 +29,7 @@ def selectAnswers(request):
 		answer4=request.POST['button4']
 	except KeyError:
 				# Redisplay the step 1 selection form.
-		return render(request, 'creamUsers/build.html', {'error_message': "We apologize that some of your choice is not captured correctly. Please build your skin profile again.",})						  
+		return render(request, 'creamUsers/build.html', {'error_message': "We apologize that some of your choices are not captured correctly. Please build your skin profile again.",})						  
 	else:
 		# create the answer object and save it to the database
 		a = Answer(question1 = answer1, question2 = answer2, question3 = answer3, question4 = answer4)
@@ -39,7 +39,7 @@ def selectAnswers(request):
 		ingredient1 = ""
 		if answer2=="morning":
 			ingredient1 = "Thin"
-		elif answer2=="allday":
+		elif answer2=="all day":
 			ingredient1="Regular"
 		else:
 			ingredient1="Thick"
@@ -254,6 +254,7 @@ def paymentBackToCart(request, invoice_num):
 	# use the invoicenum to delete all the related orders
 	Order.objects.filter(invoicenum=invoice_num).delete()
 	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
+<<<<<<< HEAD
 
 #displays the URL for return argument in the paypal form. Still under construction
 def paymentSuccess(request, invoice_num):
@@ -261,3 +262,6 @@ def paymentSuccess(request, invoice_num):
 	context = {"cart":cart, "invoicenum":invoice_num,}
 	return render_to_response("creamUsers/payment.html", context, context_instance = RequestContext (request))
 	
+=======
+	
+>>>>>>> 36ebe2498f9c26bb910b7c8d94072342ad064e15
