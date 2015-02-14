@@ -100,6 +100,15 @@ a.btn.btn-sm:hover, a.btn.btn-sm:focus{
 	background:white;
 	border:2px solid black;
 }
+.imgbox{ 
+	width: 441px; 
+	height: 248px; 
+} 
+.imgbox:hover{ 
+	-moz-box-shadow: 0 0 10px #ccc; 
+	-webkit-box-shadow: 0 0 10px #ccc; 
+	box-shadow: 0 0 10px #ccc; 
+}
 .imga{
 	width:180px;
 	height:350px;
@@ -479,7 +488,7 @@ a.btn.googleplus{
 }
 #aboutsection{
 	margin: 50%;
-	color:#3c8dc5;
+	color:black;
 }
 
 html, body, div, span, applet, object, iframe,
