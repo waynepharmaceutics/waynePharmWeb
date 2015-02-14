@@ -21,13 +21,6 @@
 		right:0;
 		background-color:white;
 	}
-	th.top{
-		padding-left:50px;
-		padding-right:50px;
-		border:1px solid white;
-		color:white;
-		background:black;
-	}
 </style>
 	<nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
 	  <div class="container-fluid col-md-8" style="float:center;border-left:0px; border-right:0px; margin-left:auto; margin-right: auto;">
@@ -68,53 +61,34 @@
 <!--Main Content for Cart Summary -->
 <span id="aboutsection">
 <div class="aboutmain">
-{% if messages %}
-		<ul class="messages">
-		{% for message in messages %}
-		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-		{% endfor %}
-		</ul>
-	{% endif %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>
+{% else %}
+<h1>Thank you for your payment! You invoice number is {{invoice}}</h1>
+{% endif %}
 
 {% load carton_tags %}
 {% get_cart as cart %}
-
-{% ifnotequal cart.count 0 %}
-
-<table>
-
-	<tr style="font-family:Museo;font-size:20px;text-align: center;font-weight:bold">
-		<th class="top">Product</th>
-		<th class="top">Quantity</th>
-		<th class="top">Total Price</th>
-		<th class="top" style="padding-left:100px;padding-right:100px">Actions</th>
+<h1>Order Summary</h1>
+<!-- writes out the form tag automatically -->
+	<table>
+	<tr>
+		<th>Product</th>
+		<th>Quantity</th>
+		<th>Total Price</th>
 	</tr>
-
 	{% for item in cart.items %}
-	<tr style="padding-left:50px;padding-right:50px;text-align:center">
+	<tr>
 		<td><a href = "{% url 'creamUsers:resultNoAnswer' item.product.id %}">Skin Product {{forloop.counter}}</a>{{item.product.name}}</td>
 		<td>{{ item.quantity }}</td>
 		<td> ${{ item.subtotal }}</td>
-		<td> 
-			<a href = "{% url 'creamUsers:addproduct' item.product.id %}">plus  </a>
-			<a href = "{% url 'creamUsers:minus' item.product.id %}">minus  </a>
-			<a href = "{% url 'creamUsers:remove' item.product.id %}">remove  </a>
-			<a href = "{% url 'creamUsers:editProd' item.product.id %}">edit  </a>
-		</td>
 	</tr>
 	{% endfor %}
-</table><br/><br/>
+</table>
 
-<div>
-<p><strong style="color:white;background:black;width:200px;padding-left:10px;padding-right:10px;">Your total is</strong><strong style="padding-left:10px;"> ${{cart.total}} </strong></p>
-</div>
-<p><a class="linky" href = "/" style="font-family:Museo; background:black;color:white;">Continue to Explore</a> </p>
-<p><a class="linky" href = "{% url 'creamUsers:checkout'%}" style="font-family:Museo; background:black;color:white;" > Check Out </a></p>
 <p> Total is ${{cart.total}} </p>
 
-{% else %}
-<p> You shopping cart is empty. Please select your product by clicking on the <a href = "/build/">survey</a>. </p>
-{% endifnotequal %}
+<p><a href = "/" > Continue to Explore </a></p>
 
 </div>
 </span>

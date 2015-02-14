@@ -16,6 +16,7 @@ from carton.cart import Cart
 from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 import datetime
+from django.views.decorators.csrf import csrf_exempt
 
 ############################Build Product & Select Answer#####################
 
@@ -239,10 +240,11 @@ def checkOutWithPaypal(request):
 		"business": settings.PAYPAL_RECEIVER_EMAIL,
 		"amount": money,
 		"item_name": "Wayne Pharmaceutics Custom Cream",
-		"invoice": "invoiceuid",
-		"notify_url": reverse('paypal:paypal-ipn'),
-		"return": "/",
-		"cancel_return": "/",
+		"invoice": invoiceuid,
+		"notify_url":'http://127.0.0.1:8000' + reverse('paypal:paypal-ipn'),
+		"return_url": 'http://127.0.0.1:8000'+ reverse('creamUsers:paymentThankyou'),
+		"cancel_return": 'http://127.0.0.1:8000'+ reverse('creamUsers:paymentCancel', args=(invoiceuid,)),
+		"no_shipping":2
 	}
 	# Create the instance.
 	form = PayPalPaymentsForm(initial=paypal_dict)
@@ -254,10 +256,39 @@ def paymentBackToCart(request, invoice_num):
 	# use the invoicenum to delete all the related orders
 	Order.objects.filter(invoicenum=invoice_num).delete()
 	return HttpResponseRedirect(reverse('creamUsers:cartdetail'))
-
-#displays the URL for return argument in the paypal form. Still under construction
-def paymentSuccess(request, invoice_num):
-	cart = Cart(request.session)
-	context = {"cart":cart, "invoicenum":invoice_num,}
-	return render_to_response("creamUsers/payment.html", context, context_instance = RequestContext (request))
 	
+# post information when payment has been successfully processed
+@csrf_exempt
+def paymentThankyou(request):
+	try:
+		invoice=request.POST['invoice']
+		context = {"invoice": invoice,}
+		return render_to_response("creamUsers/paymentThankyou.html", context, context_instance = RequestContext (request))
+	except KeyError:
+		return render(request, 'creamUsers/paymentThankyou.html', {'error_message': "We apologize that your invoice number is correctly not generated. Please contact us to report the issue",})
+
+# post inofmration when payment has been canceled, returned back to the cart
+def paymentCanceled(request, invoice_num):
+	messages.add_message(request, messages.INFO, "Your invoice has been canceled. Please confirm your cart and proceed to check out.")
+	return HttpResponseRedirect(reverse('creamUsers:paymentBackToCart', args=(invoice_num,)))
+
+
+####################below is for listening paypal signal######################
+from paypal.standard.models import ST_PP_COMPLETED
+from paypal.standard.ipn.signals import valid_ipn_received, invalid_ipn_received
+from django.dispatch import receiver
+#listen to the signal and change the order to paid
+def flipIsPaid(sender, **kwargs):
+	ipn_obj = sender
+	if ipn_obj.payment_status == ST_PP_COMPLETED:
+		# get the invoice number
+		invoice_num = ipn_obj.invoice
+		for order in Order.objects.get(invoicenum=invoice_num):
+			order.isPaid=True
+			order.save()
+valid_ipn_received.connect(flipIsPaid)
+
+# the pmt is flagged
+def payment_flagged(sender, **kwargs):
+	ipn_obj=sender
+invalid_ipn_received.connect(payment_flagged)

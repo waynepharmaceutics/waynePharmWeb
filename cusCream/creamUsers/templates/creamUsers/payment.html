@@ -82,6 +82,7 @@
 </table>
 
 <p> Total is ${{cart.total}} </p>
+{% csrf_token %}
 {{ form.render }}
 
 <p><a href = "{% url 'creamUsers:paymentBackToCart' invoicenum %}" > Return Back to Cart </a></p>

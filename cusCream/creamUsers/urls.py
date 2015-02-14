@@ -22,4 +22,7 @@ urlpatterns = patterns('',
 	########################RELATED TO PAYPAL OPERATIONS#######################
 	url(r'^checkout/$', views.checkOutWithPaypal, name = 'checkout'),
 	url(r'^(?P<invoice_num>\d+)/delete/$', views.paymentBackToCart, name = 'paymentBackToCart'),
+	url(r'^payment-thankyou/$', views.paymentThankyou, name = 'paymentThankyou'),
+	url(r'^(?P<invoice_num>\d+)/payment-cancel/$', views.paymentCanceled, name = 'paymentCancel'),
+
 )
