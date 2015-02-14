@@ -72,8 +72,7 @@ def editProd(request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
 	return render (request,'creamUsers/editProd.html', {'product': prod, 'ingredient1':prod.ingredient1, 'ingredient2':prod.ingredient2, 'ingredients':Ingredient.objects.all(),} )
 	
-def saveEditResult(request, product_id):
-	prod = get_object_or_404(Product, pk=product_id)
+def saveEditResult(request):
 	try:
 		ingre1 = Ingredient.objects.get(pk=request.POST['base'])
 		ingre2 = Ingredient.objects.get(pk=request.POST['penetrate'])

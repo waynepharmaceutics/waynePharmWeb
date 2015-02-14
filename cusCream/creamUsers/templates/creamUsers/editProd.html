@@ -194,7 +194,7 @@
 	{% endfor %}
 	</ul>
 	{% endif %}
-	<form action = "{% url 'creamUsers:saveEditResult' product.id %}" method = "post">
+	<form action = "{% url 'creamUsers:saveEditResult' %}" method = "post">
 		{% csrf_token %}
 	<div id="outer" style="height:190px"><br/>
 		<h4><strong style="border-bottom:1px solid black">Your Cream Base:</strong></h4>
@@ -246,7 +246,7 @@
 		</strong>
 	</div>
 	<div id="buttons" style="height:130px"><br/>
-		<a href = "{% url 'creamUsers:addproduct' product.id%}"> <h4 id="yes">Done Customizing</h4> </a>
+		<input type="submit" style="color:white;border:1px solid white;background:black;" value="Done Customizing"/>
 	</div>
 	</form>
 </div>

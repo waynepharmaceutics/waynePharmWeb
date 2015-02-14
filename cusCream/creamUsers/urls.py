@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 	url(r'^(?P<product_id>\d+)/(?P<answer_id>\d+)/result$', views.result, name='result'),
 	url(r'^(?P<product_id>\d+)/result$', views.resultNoAnswer, name='resultNoAnswer'),
 	url(r'^(?P<product_id>\d+)/edit$', views.editProd, name='editProd'),
-	url(r'^(?P<product_id>\d+)/saveEditResult$', views.saveEditResult, name='saveEditResult'),
+	url(r'^saveEditResult$', views.saveEditResult, name='saveEditResult'),
 	
 	########################RELATED TO CHANGING CARTS#########################
 	url(r'^cart/$', views.Cartdetail, name = 'cartdetail'),
