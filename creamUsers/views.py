@@ -240,9 +240,9 @@ def checkOutWithPaypal(request):
 		"amount": money,
 		"item_name": "Wayne Pharmaceutics Custom Cream",
 		"invoice": invoiceuid,
-		"notify_url":'http://127.0.0.1:8000' + reverse('paypal:paypal-ipn'),
-		"return_url": 'http://127.0.0.1:8000'+ reverse('creamUsers:paymentThankyou'),
-		"cancel_return": 'http://127.0.0.1:8000'+ reverse('creamUsers:paymentCancel', args=(invoiceuid,)),
+		"notify_url":'http://waynepharm.herokuapp.com' + reverse('paypal:paypal-ipn'),
+		"return_url": 'http://waynepharm.herokuapp.com'+ reverse('creamUsers:paymentThankyou'),
+		"cancel_return": 'http://waynepharm.herokuapp.com'+ reverse('creamUsers:paymentCancel', args=(invoiceuid,)),
 		"no_shipping":2
 	}
 	# Create the instance.
