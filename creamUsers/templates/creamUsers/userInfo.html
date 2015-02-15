@@ -48,7 +48,7 @@
 
 <!--Main Content for logging -->
 <span id="aboutsection">
-<div class="aboutmain">
+<div class="aboutmain" style="width:72%;">
 	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 	{% if messages %}
@@ -60,23 +60,24 @@
 	{% endif %}
 	
 	{% if user.is_authenticated %}
-		<p>Welcome {{user.username}}!</p>
-		<p>Below is your information</p>
-		<p>First Name: {{user.skinuser.firstname}}</p>
-		<p>Last Name: {{user.skinuser.lastname}}</p>
-		<p>Birthday: {{user.skinuser.birthday}} * We will send you a special gift on your birthday</p>
-		<p>Email: {{user.email}}</p>
+		<h2 style="text-align:center; font-decoration:bold;"><strong>Welcome {{user.username}}!</strong></h2>
+		<div class="userinfo" style="margin-left:5%;padding-top:30px;">
+			<h4 style="">User Information:</h4>
+			<h4 style="">First Name: {{user.skinuser.firstname}} {{user.skinuser.lastname}}</h4>
+			<h4 style="">Birthday: {{user.skinuser.birthday}}</h4>
+			<h4 style="">Email: {{user.email}}</h4>
 		
 		<br/><br/>
-		<p>In the past, you have wanted below products: </p>
+		<p>Previous purchases: </p>
 		{%for userprod in skinuser.userproduct_set.all%}
 			<p>{{userprod.product.id}} & description: place holder</p>
 			<br/>
 		{%endfor%}
+		</div>
 	{% else %}
 		<p>Please log in to see your user profile</p>
 	{% endif %} 
-	
+	<br/><br/><br/>
 </div>
 </span>
 

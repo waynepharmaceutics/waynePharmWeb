@@ -27,15 +27,16 @@
 	right:0;
 	background-color:white;
 	}
+
 	.aboutmain{
 		background-color:whitesmoke;
 		color:black;
 		text-align:center;
-	
-		width:30%;
+		width:25%;
 		margin-left:auto;
 		margin-right:auto;
-		margin-top:10%;
+		margin-top:5%;
+		height:500px;
 		padding:50px;
 		border-radius:49%
 	}
@@ -78,7 +79,7 @@
 
 <!--Main Content for logging -->
 <span id="aboutsection">
-<div class="aboutmain">
+<div class="aboutmain"><br/>
 	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 	{% if messages %}
