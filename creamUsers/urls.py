@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 	
 	########################RELATED TO CHANGING CARTS#########################
 	url(r'^cart/$', views.Cartdetail, name = 'cartdetail'),
+	url(r'^clearcart/$', views.ClearCart, name = 'clearcart'),
 	url(r'^(?P<product_id>\d+)/add/$', views.AddProduct, name = 'addproduct'),
 	url(r'^(?P<product_id>\d+)/plus/$', views.Plusone, name = 'plus'),
 	url(r'^(?P<product_id>\d+)/minus/$', views.Minusone, name = 'minus'),

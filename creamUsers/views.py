@@ -166,6 +166,12 @@ def LogoutRequest(request):
 ##################Below Code Deal With Carts##################################
 def Cartdetail(request):
 	return render(request, 'creamUsers/cart.html')
+
+#clear the current cart and return back to front page
+def ClearCart(request):
+	cart = Cart(request.session)
+	cart.clear()
+	return HttpResponseRedirect('/')
 	
 def AddProduct (request, product_id):
 	prod = get_object_or_404(Product, pk=product_id)
