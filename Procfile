@@ -1,0 +1,1 @@
+web: gunicorn cusCream.wsgi --log-file -

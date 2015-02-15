@@ -8,24 +8,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES = {}
-DATABASES['default'] =  dj_database_url.config()
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-STATIC_ROOT = 'staticfiles'
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -38,8 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # sending emails to gmail account
 MAILER_EMAIL_BACKEND = 'django_ses.SESBackend' 
@@ -69,7 +54,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".	
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'templates'),
+    'Users/Nemesis/Documents/GitHub/waynePharmWeb/cusCream/creamUsers/templates',
 )
 
 TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
@@ -139,8 +124,10 @@ USE_L10N = True
 USE_TZ = False
 
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-
+STATIC_URL = '/static/'
 
 # Default django settings
 BOOTSTRAP3 = {
