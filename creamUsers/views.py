@@ -288,7 +288,7 @@ def flipIsPaid(sender, **kwargs):
 	if ipn_obj.payment_status == ST_PP_COMPLETED:
 		# get the invoice number
 		invoice_num = ipn_obj.invoice
-		for order in Order.objects.get(invoicenum=invoice_num):
+		for order in Order.objects.filter(invoicenum=invoice_num):
 			order.isPaid=True
 			order.save()
 valid_ipn_received.connect(flipIsPaid)
