@@ -64,31 +64,38 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>
 {% else %}
-<h1>Thank you for your payment! You invoice number is {{invoice}}</h1>
+<h2>Thank you for your payment! You invoice number is {{invoice}}</h2>
 {% endif %}
 
 {% load carton_tags %}
 {% get_cart as cart %}
-<h1>Order Summary</h1>
+<h2>Your Order Summary</h2>
+<hr color="#000000" size="5" align="center" style="border: 1px solid black" width="100%">
+
 <!-- writes out the form tag automatically -->
-	<table>
-	<tr>
-		<th>Product</th>
-		<th>Quantity</th>
-		<th>Total Price</th>
+
+
+<table style="text-align:left;">
+	<tr style="font-family:Museo;font-size:20px;text-align: left;font-weight:bold">
+		<th style="width:350px;text-align:left">Product</th>
+		<th style="width:300px;text-align:center">Quantity</th>
+		<th style="width:350px;text-align:right">Total Price</th>
 	</tr>
 	{% for item in cart.items %}
-	<tr>
-		<td><a href = "{% url 'creamUsers:resultNoAnswer' item.product.id %}">Skin Product {{forloop.counter}}</a>{{item.product.name}}</td>
-		<td>{{ item.quantity }}</td>
-		<td> ${{ item.subtotal }}</td>
+	<tr style="padding-top:5px; padding-bottom:5px; padding-left:50px; padding-right:50px; text-align:left">
+		<td style="width:350px;text-align:left"><a href = "{% url 'creamUsers:resultNoAnswer' item.product.id %}">Skin Product {{forloop.counter}}</a>{{item.product.name}}</td>
+		<td style="width:300px;text-align:center">{{ item.quantity }}</td>
+		<td style="width:350px;text-align:right;padding-right:25px;"> ${{ item.subtotal }}</td>
 	</tr>
 	{% endfor %}
 </table>
-
-<p> Total is ${{cart.total}} </p>
-
-<p><a href = "{% url 'creamUsers:clearcart' %}" > Continue to Explore </a></p>
+<br/><br/>
+<div class="col-md-5" style="text-align:left;font-family:Museo">
+	<p><strong style="color:white;background:black;width:200px;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;font-size:18px">Your total is</strong>
+	<strong style="padding-left:10px;"> ${{cart.total}} </strong></p>
+</div>
+<br/><br/></br>
+<p style="text-align:center"><a href = "{% url 'creamUsers:clearcart' %}" > Continue to Explore </a></p>
 
 </div>
 </span>

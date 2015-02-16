@@ -180,7 +180,7 @@
 
 <form action = "{% url 'creamUsers:selectAnswer' %}" method = "post">
 {% csrf_token %}
-<div id="q_1" style="display:block">
+<div id="q_1" style="display:block;">
 	<div id="buildtitle">
 	<h2><center/><strong/>Ready to get started on your own cream?<br/>Help us answer these questions to customize your product!</h2>
 	<br/><br/><br/>
@@ -228,8 +228,9 @@
 		<label for="img4"><img class="imga" src="{% static "creamUsers/images/comboskin.png" %}" onclick="toggle_visibility('q_1');expandDiv('q_2')">
 		<input type="checkbox" class="chk" id="img4" name="button1" style="visibility:hidden" value="combination"></input></label>
 	</div>
+
 	<footer>
-	<div class="container-fluid">
+	<div class="container-fluid" style="bottom:0; margin-bottom:-150px;">
 		<div class="row">
 			<div class="centered-pills">
 				<ul class="nav nav-pills">
@@ -252,7 +253,6 @@
 		</div>
 	</div>
 	</footer>
-
 </div>
 
 <div id="q_2" style="display: none">

@@ -32,6 +32,12 @@
 	font-family: "Lobster Two";
 	opacity:1;
 }
+ul.nav li.dropdown:hover ul.dropdown-menu{
+	display:block;
+}
+ul.nav li.sidedrop:hover ul.nav{
+	display:block;
+}
 li.menu-gap{
 	margin:0 0 10px 0;
 }
