@@ -107,8 +107,8 @@ a.btn.btn-sm:hover, a.btn.btn-sm:focus{
 	border:2px solid black;
 }
 .imgbox{ 
-	width: 441px; 
-	height: 248px; 
+	width: 250px; 
+	height: 180px; 
 } 
 .imgbox:hover{ 
 	-moz-box-shadow: 0 0 10px #ccc; 
