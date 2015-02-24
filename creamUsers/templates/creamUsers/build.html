@@ -5,14 +5,7 @@
 {% block content %}
 {% load staticfiles %}
 {% load bootstrap3 %}
-<style>
-	body{
-		height:100%;
-	}
-	footer{
-		bottom:0;
-	}
-</style>
+
 <script language="javascript" type="text/javascript">
 	$("#ques1").click(function(){
 	alert($("#loll").val());
@@ -180,7 +173,7 @@
 
 <form action = "{% url 'creamUsers:selectAnswer' %}" method = "post">
 {% csrf_token %}
-<div id="q_1" style="display:block;">
+<div id="q_1" style="display:block; height:900px;">
 	<div id="buildtitle">
 	<h2><center/><strong/>Ready to get started on your own cream?<br/>Help us answer these questions to customize your product!</h2>
 	<br/><br/><br/>
@@ -229,33 +222,33 @@
 		<input type="checkbox" class="chk" id="img4" name="button1" style="visibility:hidden" value="combination"></input></label>
 	</div>
 
-	<footer>
-	<div class="container-fluid" style="bottom:0; margin-bottom:-150px;">
+	<footer style="bottom:0;left:0;right:0;height:150px; position:absolute;">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="centered-pills">
 				<ul class="nav nav-pills">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="plan.html">Ingredients</span></a></li>
-					<li><a href="build.html">Build</a></li>
-					<li><a href="about.html">About Us</a></li>
-					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/plan/">Ingredients</a></li>
+					<li><a href="/build/">Build</a></li>
+					<li><a href="/about/">About Us</a></li>
+					<li><a href="/contact/">Contact Us</a></li>
 				</ul>
 			</div>
 				
 			<div class="socialbuttons">
-				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like Us on Facebook!"</img></a>
-				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow Us on Twitter!"</img></a>
-				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Follow Us on Google Plus!"</img></a>
+				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like us on FB!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow us on Twitter!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Like us on Google Plus!"></a>
 			</div>
 			<div class="text-center">
-			<small><strong> &copy; <a href="index.html">Wayne Pharmaceutics</a> 2014</strong></small>
+				<small><strong> &copy; <a href="/">Wayne Pharmaceutics</a> 2015</strong></small>
 			</div>
 		</div>
 	</div>
 	</footer>
 </div>
 
-<div id="q_2" style="display: none">
+<div id="q_2" style="display: none;height:900px">
 	<div id="buildtitle">
 	<h2><center/><strong/><br/></h2>
 	<br/><br/><br/>
@@ -296,26 +289,26 @@
 			<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_2');expandDiv('q_1')" Value="Previous">
 		</div>
 	</div>
-	<footer>
+	<footer style="position:absolute;bottom:0;left:0;right:0;height:150px;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="centered-pills">
 				<ul class="nav nav-pills">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="plan.html">Ingredients</span></a></li>
-					<li><a href="build.html">Build</a></li>
-					<li><a href="about.html">About Us</a></li>
-					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/plan/">Ingredients</a></li>
+					<li><a href="/build/">Build</a></li>
+					<li><a href="/about/">About Us</a></li>
+					<li><a href="/contact/">Contact Us</a></li>
 				</ul>
 			</div>
 				
 			<div class="socialbuttons">
-				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like Us on Facebook!"</img></a>
-				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow Us on Twitter!"</img></a>
-				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Follow Us on Google Plus!"</img></a>
+				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like us on FB!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow us on Twitter!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Like us on Google Plus!"></a>
 			</div>
 			<div class="text-center">
-			<small><strong> &copy; <a href="index.html">Wayne Pharmaceutics</a> 2014</strong></small>
+				<small><strong> &copy; <a href="/">Wayne Pharmaceutics</a> 2015</strong></small>
 			</div>
 		</div>
 	</div>
@@ -324,7 +317,7 @@
 </div>
 
 
-<div id="q_3" style="display: none">
+<div id="q_3" style="display: none; height:900px">
 	<div id="buildtitle">
 	<h2><center/><strong/><br/></h2>
 	<br/><br/><br/>
@@ -368,26 +361,26 @@
 			<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_3');expandDiv('q_2')" Value="Previous">
 		</div>
 	</div>
-	<footer>
+	<footer style="position:absolute;bottom:0;left:0;right:0;height:150px;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="centered-pills">
 				<ul class="nav nav-pills">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="plan.html">Ingredients</span></a></li>
-					<li><a href="build.html">Build</a></li>
-					<li><a href="about.html">About Us</a></li>
-					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/plan/">Ingredients</a></li>
+					<li><a href="/build/">Build</a></li>
+					<li><a href="/about/">About Us</a></li>
+					<li><a href="/contact/">Contact Us</a></li>
 				</ul>
 			</div>
 				
 			<div class="socialbuttons">
-				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like Us on Facebook!"</img></a>
-				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow Us on Twitter!"</img></a>
-				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Follow Us on Google Plus!"</img></a>
+				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like us on FB!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow us on Twitter!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Like us on Google Plus!"></a>
 			</div>
 			<div class="text-center">
-			<small><strong> &copy; <a href="index.html">Wayne Pharmaceutics</a> 2014</strong></small>
+				<small><strong> &copy; <a href="/">Wayne Pharmaceutics</a> 2015</strong></small>
 			</div>
 		</div>
 	</div>
@@ -396,7 +389,7 @@
 </div>
 
 
-<div id="q_4" style="display: none">
+<div id="q_4" style="display: none; height:900px">
 	<div id="buildtitle">
 	<h2><center/><strong/><br/></h2>
 	<br/><br/><br/>
@@ -436,26 +429,26 @@
 			<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_4');expandDiv('q_3')" Value="Previous">
 		</div>
 	</div>
-	<footer>
+	<footer style="position:absolute; bottom:0;left:0;right:0;height:150px;">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="centered-pills">
 				<ul class="nav nav-pills">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="plan.html">Ingredients</span></a></li>
-					<li><a href="build.html">Build</a></li>
-					<li><a href="about.html">About Us</a></li>
-					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/plan/">Ingredients</a></li>
+					<li><a href="/build/">Build</a></li>
+					<li><a href="/about/">About Us</a></li>
+					<li><a href="/contact/">Contact Us</a></li>
 				</ul>
 			</div>
 				
 			<div class="socialbuttons">
-				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like Us on Facebook!"</img></a>
-				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow Us on Twitter!"</img></a>
-				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Follow Us on Google Plus!"</img></a>
+				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like us on FB!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow us on Twitter!"></a>
+				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Like us on Google Plus!"></a>
 			</div>
 			<div class="text-center">
-			<small><strong> &copy; <a href="index.html">Wayne Pharmaceutics</a> 2014</strong></small>
+				<small><strong> &copy; <a href="/">Wayne Pharmaceutics</a> 2015</strong></small>
 			</div>
 		</div>
 	</div>
@@ -463,7 +456,7 @@
 
 </div>
 	
-<div id="q_5" style="display: none">
+<div id="q_5" style="display: none; height:1000px">
 	<div id="buildtitle">
 	<h2><center/><strong/><br/></h2>
 	<br/><br/><br/>
@@ -495,7 +488,7 @@
 		<input type="submit" style="color:white;border:1px solid white;background:black;" value="Finish"/>
 	</div>
 	</div>
-
+	
 </div>
 </form>
 
