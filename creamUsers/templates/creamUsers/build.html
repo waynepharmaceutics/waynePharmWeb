@@ -414,16 +414,16 @@
 			<div id="progress" class="progress-bar" style="width:75%;"></div>
 		</div>
 	</div>
-	<div id="buildquestion">
-		<h2 align="center" class="question">Describe your activity level</h2><br/>
-		<label for="img12"><img class="imga" src="{% static "creamUsers/images/morning.png" %}">
-		<input type="checkbox" class="chk " id="img12" name="button4" style="visibility:hidden" value="energetic" onclick="toggle_visibility('q_4');expandDiv('q_5')"></input></label>
+	<div id="buildquestion" style="width: 1200px;">
+		<h2 align="center" class="question">How would you describe yourself?</h2><br/>
+		<label for="img12"><img style="width:300px;height:200px" class="imga" src="{% static "creamUsers/images/energetic.png" %}">
+		<input type="checkbox" class="chk " id="img12" name="button4" style="visibility:hidden" value="energetic" onclick="toggle_visibility('q_4');expandDiv('q_5')"><p>Energetic</p></input></label>
 	
-		<label for="img13"><img class="imga" src="{% static "creamUsers/images/allday.png" %}">
-		<input type="checkbox" class="chk " id="img13" name="button4" style="visibility:hidden" value="social" onclick="toggle_visibility('q_4');expandDiv('q_5')"></input></label>
+		<label for="img13"><img style="width:200px;height:300px" class="imga" src="{% static "creamUsers/images/socialite.png" %}">
+		<input type="checkbox" class="chk " id="img13" name="button4" style="visibility:hidden" value="social" onclick="toggle_visibility('q_4');expandDiv('q_5')"><br/><p>Socialite</p></input></label>
 	
-		<label for="img14"><img class="imga" src="{% static "creamUsers/images/nighttime.png" %}">
-		<input type="checkbox" class="chk " id="img14" name="button4" style="visibility:hidden" value="reserved" onclick="toggle_visibility('q_4');expandDiv('q_5')"></input></label>
+		<label for="img14"><img style="width:300px;height:200px" class="imga" src="{% static "creamUsers/images/reserved.png" %}">
+		<input type="checkbox" class="chk " id="img14" name="button4" style="visibility:hidden" value="reserved" onclick="toggle_visibility('q_4');expandDiv('q_5')"><p>Reserved</p></input></label>
 		
 		<div id="buttons text-align:center"><br/>
 			<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_4');expandDiv('q_3')" Value="Previous">
