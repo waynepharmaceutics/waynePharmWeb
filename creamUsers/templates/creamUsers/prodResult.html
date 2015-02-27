@@ -128,7 +128,7 @@
 
 <title>Questionairre Results</title>
 <nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container-fluid">
+	<div class="container-fluid col-md-8" style="float:center;border-left:0px; border-right:0px; margin-left:auto; margin-right: auto;">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 			<span class="sr-only">Toggle navigation</span>
@@ -152,7 +152,7 @@
 			<li><a href="/about/">About Us</a></li>
 			<li><a href="/contact/">Contact</a></li>
 			{% if user.is_authenticated %} 
-			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span>{{user.username}}</a></li>
+			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
 			<li id="menu-gap"><a href="/logout/"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
 			{% else %} 
 			<li id="menu-gap"><a href="/login/"><span class="glyphicon glyphicon-home"></span> Login</a></li>
@@ -169,8 +169,7 @@
 	<div id="buildquestion">
 		<h2 class="question">Based on the info you've provided, this is what we recommend...</h2><br/><br/>
 		{% if answer %}
-			<h3>The information you've provided us:</h3><br/><p>You are {{answer.question3}} years old, and are {{answer.question4}}. <br/></p>
-			<p>You also have {{answer.question1}} skin, and apply your skin products {{answer.question2}}.</p>
+			<h3>The information you've provided us:</h3><br/><p>You are {{answer.question3}} years old, and are {{answer.question4}}. You also have {{answer.question1}} skin, and apply your skin products {{answer.question2}}.</p>
 		{% endif %}
 		<br/><h3>What we recommend:</h3>
 		<form action=""><br/>
@@ -183,8 +182,8 @@
 			<br/><br/>
 		</form>
 		<div id="buttons">
-		<a href = "{% url 'creamUsers:addproduct' product.id%}"><h4 class="h4link" style="border:1px solid black">Yes, my skin wants this!</h4></a>
-		<a href = "{% url 'creamUsers:editProd' product.id %}"><h4 class="h4link" style="border:1px solid black">I'd like to change a few things.</h4></a>
+		<a href = "{% url 'creamUsers:addproduct' product.id%}"><h4 class="h4link" style="border:1px solid black; font-family:Museo; font-size: 20px">Yes, my skin wants this!</h4></a>
+		<a href = "{% url 'creamUsers:editProd' product.id %}"><h4 class="h4link" style="border:1px solid black; font-family:Museo; font-size: 20px">I'd like to change a few things.</h4></a>
 		</div>
 	</div>
 
