@@ -169,11 +169,11 @@
 	<div id="buildquestion">
 		<h2 class="question">Based on the info you've provided, this is what we recommend...</h2><br/><br/>
 		{% if answer %}
-			<h3>The information you've provided us:</h3><br/><p>You are {{answer.question3}} years old, and are {{answer.question4}}. You also have {{answer.question1}} skin, and apply your skin products {{answer.question2}}.</p>
+			<h3>The information you've provided us:</h3><br/><p style="font-family:Museo; font-size: 18px">You are {{answer.question3}} years old, and are {{answer.question4}}. You also have {{answer.question1}} skin, and apply your skin products {{answer.question2}}.</p>
 		{% endif %}
 		<br/><h3>What we recommend:</h3>
 		<form action=""><br/>
-			<p>Cream Base Thickness:</p>
+			<p style="font-family:Museo; font-size: 18px">Cream Base Thickness:</p>
 			<p>{{ingredient1.ingreName}}: {{ingredient1.description}}</p>
 		</form>
 		<form action=""><br/>
