@@ -110,19 +110,25 @@
 
 		{% ifnotequal cart.count 0 %}
 
-		<table style="text-align:center;margin-left:auto;margin-right:auto">
+		<table style="text-align:center;margin-left:auto;margin-right:auto; width:850px">
 
 			
 			<tr style="font-family:Museo;font-size:20px;text-align: center;font-weight:bold">
-				<th class="top">Product</th>
+				<th class="top" style="padding-left:80px;padding-right:80px">Product</th>
 				<th class="top">Quantity</th>
 				<th class="top">Total Price</th>
-				<th class="top" style="padding-left:100px;padding-right:100px">Actions</th>
+				<th class="top" style="">Actions</th>
 			</tr>
 
 			{% for item in cart.items %}
 			<tr style="padding-top:5px; padding-bottom:5px; padding-left:50px; padding-right:50px; text-align:center">
-				<td><a href = "{% url 'creamUsers:resultNoAnswer' item.product.id %}">Skin Product {{forloop.counter}}</a>{{item.product.name}}</td>
+				<td style ="text-align:left;padding-left:10px"><a href = "{% url 'creamUsers:resultNoAnswer' item.product.id %}">
+					{% if user.is_authenticated %}
+						{{user.username}}'s Cream Build {{forloop.counter}}
+					{% else %} 
+						Your Cream Build {{forloop.counter}}
+					{% endif %} 
+					</a><blockquote>-{{item.product.ingredient1.ingreName}}<br/>-{{item.product.ingredient2.ingreName}}<br/>-{{item.product.ingredient3.ingreName}}</blockquote></td>
 				<td>{{ item.quantity }}</td>
 				<td> ${{ item.subtotal }}</td>
 				<td style="padding-top:5px; padding-bottom:5px; padding-left:50px; padding-right:50px; text-align:center"> 

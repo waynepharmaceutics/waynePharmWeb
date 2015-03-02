@@ -245,6 +245,32 @@
 		</div>
 		</strong>
 	</div>
+	
+	<div id="outer" style="height:190px"><br/>
+		<h4><strong style="border-bottom:1px solid black">Your Main Element:</strong></h4>
+		<select id="main" name="main" onchange="updateText('main')">
+		{% for ingre in ingredients %}
+			{%if ingre.inType == "Main"%}
+			{%if ingre.ingreName == prod.ingredient3.ingreName%} 
+				<option name = "main" value="{{ingre.id}}" selected="selected">{{ingre.ingreName}}</option>
+			{%else%}
+				<option name = "main" value="{{ingre.id}}">{{ingre.ingreName}}</option>
+			{%endif%}
+			{%endif%}
+			{% endfor %}
+		</select>
+		<strong>
+		<div id="third_select1" class="6">
+			<br/><p>Vitamin A place holder</p>			
+		</div>
+		<div id="third_select2" class="7" style="display:none">
+			<br/><p>Caffeine place holder</p>
+		</div>
+		<div id="third_select3" class="8" style="display:none">
+			<br/><p>Cocoa butter place holder</p>
+		</div>
+		</strong>
+	</div>
 	<div id="buttons" style="height:130px"><br/>
 		<input type="submit" style="color:white;border:1px solid white;background:black;" value="Done Customizing"/>
 	</div>
@@ -265,6 +291,12 @@
 <script type="text/javascript">
 	$("#penetrate").change(function() {         
 	$('div[id^=second_select]').hide('slow');
+	$('.'+this.value).show('slow');  
+	});
+</script>
+<script type="text/javascript">
+	$("#main").change(function() {         
+	$('div[id^=third_select]').hide('slow');
 	$('.'+this.value).show('slow');  
 	});
 </script>
