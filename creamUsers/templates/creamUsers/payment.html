@@ -66,22 +66,37 @@
 {% get_cart as cart %}
 <h1>Order Summary</h1>
 <!-- writes out the form tag automatically -->
-	<table>
-	<tr>
-		<th>Product</th>
-		<th>Quantity</th>
-		<th>Total Price</th>
-	</tr>
-	{% for item in cart.items %}
-	<tr>
-		<td><a href = "{% url 'creamUsers:resultNoAnswer' item.product.id %}">Skin Product {{forloop.counter}}</a>{{item.product.name}}</td>
-		<td>{{ item.quantity }}</td>
-		<td> ${{ item.subtotal }}</td>
-	</tr>
-	{% endfor %}
-</table>
+	<table style="text-align:center;margin-left:auto;margin-right:auto; width:850px">
 
-<p> Total is ${{cart.total}} </p>
+			
+			<tr style="font-family:Museo;font-size:20px;text-align: center;font-weight:bold">
+				<th class="top" style="padding-left:80px;padding-right:80px">Product</th>
+				<th class="top">Quantity</th>
+				<th class="top">Total Price</th>
+				<th class="top">Name Your Cream (Max 8 Char)</th>
+			</tr>
+
+			{% for order in orders %}
+			<tr style="padding-top:5px; padding-bottom:5px; padding-left:50px; padding-right:50px; text-align:center">
+				<td style ="text-align:left;padding-left:10px">
+					{% if user.is_authenticated %}
+						{{user.username}}'s Cream Build {{forloop.counter}}
+					{% else %} 
+						Your Cream Build {{forloop.counter}}
+					{% endif %} 
+					<blockquote>-{{order.product.ingredient1.ingreName}}<br/>-{{order.product.ingredient2.ingreName}}<br/>-{{order.product.ingredient3.ingreName}}</blockquote></td>
+				<td>{{ order.quantity }}</td>
+				<td> ${{ order.getSubTotal }}</td>
+				<td> {{order.custom}}</td>
+			</tr>
+			{% endfor %}
+		</table><br/><br/>
+		
+		<div class="" style="padding-left:2px;margin-left:9%;text-align:left;font-family:Museo">
+			<p><strong style="color:white;background:black;width:200px;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;font-size:18px">Your total is</strong>
+			<strong style="padding-left:10px;"> ${{cart.total}} </strong></p>
+		</div>
+		<br/><br/><br/><br/>
 {% csrf_token %}
 {{ form.render }}
 

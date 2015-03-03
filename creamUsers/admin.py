@@ -12,7 +12,7 @@ class IngreAdmin(admin.ModelAdmin):
 admin.site.register(Ingredient, IngreAdmin)
 
 class ProdAdmin(admin.ModelAdmin):
-	list_display = ('ingredient1', 'ingredient2', 'price')
+	list_display = ('ingredient1', 'ingredient2', 'ingredient3', 'price')
 admin.site.register(Product,ProdAdmin)
 
 class SkinUserAdmin(admin.ModelAdmin):
@@ -30,5 +30,5 @@ class UserproductAdmin(admin.ModelAdmin):
 admin.site.register(Userproduct)
 
 class OrderAdmin(admin.ModelAdmin):
-	list_display = ('invoicenum', 'product','quantity','isPaid')
+	list_display = ('invoicenum', 'product','quantity','custom','isPaid')
 admin.site.register(Order, OrderAdmin)

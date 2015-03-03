@@ -51,10 +51,19 @@ def selectAnswers(request):
 		else:
 			ingredient2="Propylene Glycol"
 			
+		ingredient3=""
+		if answer4=="energetic":
+			ingredient3="Vitamin A"
+		elif answer4=="social":
+			ingredient3="Caffeine"
+		else:
+			ingredient3="Cocoa Butter"
+			
 		# create the product based on the two ingredients to display on the build2.html (result page)
 		ingre1 = Ingredient.objects.get(inType="CreamBase", ingreName=ingredient1)
 		ingre2 = Ingredient.objects.get(inType="PenetrateAgent", ingreName=ingredient2)
-		prod = Product.objects.get(ingredient1=ingre1, ingredient2=ingre2)
+		ingre3 = Ingredient.objects.get(inType="Main", ingreName=ingredient3)
+		prod = Product.objects.get(ingredient1=ingre1, ingredient2=ingre2, ingredient3=ingre3)
 		
 		# return to the product result page
 		return HttpResponseRedirect(reverse('creamUsers:result', args=(prod.id,a.id,)))
@@ -76,11 +85,12 @@ def saveEditResult(request):
 	try:
 		ingre1 = Ingredient.objects.get(pk=request.POST['base'])
 		ingre2 = Ingredient.objects.get(pk=request.POST['penetrate'])
+		ingre3 = Ingredient.objects.get(pk=request.POST['main'])
 	except (KeyError, Ingredient.DoesNotExist):
 				# Redisplay the step 1 selection form.
 		return render(request, 'creamUsers/editProd.html', {'product': prod, 'ingredient1':prod.ingredient1, 'ingredient2':prod.ingredient2, 'ingredients':Ingredient.objects.all(), 'error_message': "You didn't select a choice.",})
 	else:
-		prod = Product.objects.get(ingredient1=ingre1, ingredient2=ingre2)
+		prod = Product.objects.get(ingredient1=ingre1, ingredient2=ingre2, ingredient3=ingre3)
 		return HttpResponseRedirect(reverse('creamUsers:resultNoAnswer', args=(prod.id,)))
 
 
@@ -235,25 +245,39 @@ def checkOutWithPaypal(request):
 	money = cart.total
 	invoiceuid = invoiceNumGenerator()
 	# add all products in the cart to the order table and set isPaid to false
+	i=1
+	error = 0
 	for item in cart.items:
 		#loop through # of items in order to add products
+		custom = request.POST['custom'+str(i)]
+		# more than 8 character, make an error message
+		if len(custom)>8:
+			messages.add_message(request, messages.ERROR, "Your cream name is longer than 8 characters for skin product "+ str(i)+". Please re-enter in the text box")
+			error=error+1
 		prod = get_object_or_404(Product, pk=item.product.id)
-		order = Order(invoicenum=invoiceuid, product=prod,quantity=item.quantity)
+		order = Order(invoicenum=invoiceuid, product=prod,quantity=item.quantity,custom=custom)
 		order.save()
-	# What you want the button to do.
+		i=i+1
+	
+	# if there are any messages, then return back to the previous page and display all messages
+	if error>0:
+		return HttpResponseRedirect(reverse('creamUsers:paymentBackToCart', args=(invoiceuid,)))
+	
+	# below is constructing paypal button-What you want the button to do.
 	paypal_dict = {
 		"business": settings.PAYPAL_RECEIVER_EMAIL,
 		"amount": money,
 		"item_name": "Wayne Pharmaceutics Custom Cream",
 		"invoice": invoiceuid,
-		"notify_url":'http://waynepharm.herokuapp.com' + reverse('paypal:paypal-ipn'),
-		"return_url": 'http://waynepharm.herokuapp.com'+ reverse('creamUsers:paymentThankyou'),
-		"cancel_return": 'http://waynepharm.herokuapp.com'+ reverse('creamUsers:paymentCancel', args=(invoiceuid,)),
+		"notify_url":'http://www.pharmacrafted.com' + reverse('paypal:paypal-ipn'),
+		"return_url": 'http://www.pharmacrafted.com'+ reverse('creamUsers:paymentThankyou'),
+		"cancel_return": 'http://www.pharmacrafted.com'+ reverse('creamUsers:paymentCancel', args=(invoiceuid,)),
 		"no_shipping":2
 	}
 	# Create the instance.
 	form = PayPalPaymentsForm(initial=paypal_dict)
-	context = {"form": form, "invoicenum":invoiceuid, }
+	orders = Order.objects.filter(invoicenum=invoiceuid)
+	context = {"form": form, "invoicenum":invoiceuid, "orders": orders,}
 	return render_to_response("creamUsers/payment.html", context, context_instance = RequestContext (request))
 
 # deletes the previously added orders because the proceeds was canceled

@@ -103,13 +103,14 @@
 		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
 		{% endfor %}
 		</ul>
-	{% endif %}
+{% endif %}
 
 {% load carton_tags %}
 {% get_cart as cart %}
 
 		{% ifnotequal cart.count 0 %}
-
+<form action = "{% url 'creamUsers:checkout'%}" method = "post">
+{% csrf_token %}
 		<table style="text-align:center;margin-left:auto;margin-right:auto; width:850px">
 
 			
@@ -117,6 +118,7 @@
 				<th class="top" style="padding-left:80px;padding-right:80px">Product</th>
 				<th class="top">Quantity</th>
 				<th class="top">Total Price</th>
+				<th class="top">Name Your Cream (Max 8 Char)</th>
 				<th class="top" style="">Actions</th>
 			</tr>
 
@@ -131,6 +133,7 @@
 					</a><blockquote>-{{item.product.ingredient1.ingreName}}<br/>-{{item.product.ingredient2.ingreName}}<br/>-{{item.product.ingredient3.ingreName}}</blockquote></td>
 				<td>{{ item.quantity }}</td>
 				<td> ${{ item.subtotal }}</td>
+				<td> <input type="text" name="custom{{forloop.counter}}"/></td>
 				<td style="padding-top:5px; padding-bottom:5px; padding-left:50px; padding-right:50px; text-align:center"> 
 					<a href = "{% url 'creamUsers:addproduct' item.product.id %}"><img src="{% static "creamUsers/images/plus.png" %}" alt=""></a>
 					<a href = "{% url 'creamUsers:minus' item.product.id %}"><img src="{% static "creamUsers/images/minus.png" %}" alt=""></a>
@@ -157,11 +160,12 @@
 				<a style="padding-right:30px;" href= "/"><img src="{% static "creamUsers/images/browse.png" %}" style="padding-top:6px;" alt="Edit Cart"><br/><p>Explore More</p></a>
 			</div>
 			<div style="width:120px; float:left; padding-top:6px;">
-				<a href= "{% url 'creamUsers:checkout'%}"><img src="{% static "creamUsers/images/checkout.png" %}" alt="Checkout"><br/><p style="padding-top:6px">Checkout</p></a>
+				<img src="{% static "creamUsers/images/checkout.png" %}" alt="Checkout"><br/><input type="submit" value="Checkout"/>
 			</div>
 		</div>
 	</div>
 </div>
+</form>
 {% else %}
 <p> You shopping cart is empty. Please select your product by clicking on the <a href = "/build/">survey</a>. </p>
 {% endifnotequal %}

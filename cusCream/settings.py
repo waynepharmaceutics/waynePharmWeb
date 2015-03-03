@@ -51,7 +51,7 @@ EMAIL_USE_TLS = True
 
 # PAYPAL related information
 PAYPAL_RECEIVER_EMAIL = "wayne.pharmaceutics@gmail.com"
-PAYPAL_TEST = True
+PAYPAL_TEST = False
 
 # provide our get_profile()
 AUTH_PROFILE_MODULE = 'creamUsers.Skinuser'

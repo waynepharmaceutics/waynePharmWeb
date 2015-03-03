@@ -25,7 +25,11 @@ class Product (models.Model):
 	price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name=_('price'))
 	ingredient1 = models.ForeignKey(Ingredient, related_name='ingredient_cream')
 	ingredient2 = models.ForeignKey(Ingredient, related_name='ingredient_penetrate')
+	ingredient3 = models.ForeignKey(Ingredient, related_name='ingredient_main', default=6)
 	#TO DO: add a product name and/or description method
+	def getDesc(self):
+		return self.ingredient1.ingreName + ", " + self.ingredient2.ingreName +", " + self.ingredient3.ingreName
+
 
 ##########All below classes deal with users, their products#####################
 class Skinuser (models.Model):
@@ -92,8 +96,12 @@ class Order(models.Model):
 	invoicenum = models.IntegerField(default=0)
 	product = models.ForeignKey(Product)
 	quantity = models.IntegerField(default=1)
+	custom = models.CharField(max_length = 8, default = "Yours")
 	isPaid = models.BooleanField(default=False)
 	
 	# get back a list of orders to flip is paid to false when returned back from paypal
 	def getOrderItemList(self, invoicenum):
 		return self.get(invoicenum = invoicenum)
+	
+	def getSubTotal(self):
+		return self.product.price * self.quantity
