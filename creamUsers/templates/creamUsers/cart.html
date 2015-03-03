@@ -67,7 +67,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">Wayne Pharmaceutics</a>
+			<div class="navbar-brand" style="padding-top:20px;"></div>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
@@ -96,7 +96,7 @@
 
 <!--Main Content for Cart Summary -->
 
-<div class="aboutmain">
+<div class="aboutmain" style="width:70%">
 {% if messages %}
 		<ul class="messages">
 		{% for message in messages %}
@@ -109,16 +109,16 @@
 {% get_cart as cart %}
 
 		{% ifnotequal cart.count 0 %}
-<form action = "{% url 'creamUsers:checkout'%}" method = "post">
+<form action = "{% url 'creamUsers:checkout'%}" method = "post" style="width:1000px; margin-left:auto;margin-right: auto;">
 {% csrf_token %}
-		<table style="text-align:center;margin-left:auto;margin-right:auto; width:850px">
+		<table style="float:center; text-align:center;margin-left:auto;margin-right:auto; width:1000px">
 
 			
-			<tr style="font-family:Museo;font-size:20px;text-align: center;font-weight:bold">
+			<tr style="font-family:Museo;font-size:18px;text-align: center;font-weight:bold">
 				<th class="top" style="padding-left:80px;padding-right:80px">Product</th>
-				<th class="top">Quantity</th>
-				<th class="top">Total Price</th>
-				<th class="top">Name Your Cream (Max 8 Char)</th>
+				<th class="qty" style="padding-left:10px;padding-right:10px;color:white;background:black;border:1px solid white">Quantity</th>
+				<th class="tot" style="text-align: center; padding-left:20px;padding-right:20px;color:white;background:black;border:1px solid white">Total</th>
+				<th class="name" style="text-align: center; padding-left:50px;padding-right:50px;color:white;background:black;border:1px solid white">Name Your Cream (Max 8 Char)</th>
 				<th class="top" style="">Actions</th>
 			</tr>
 
@@ -130,11 +130,11 @@
 					{% else %} 
 						Your Cream Build {{forloop.counter}}
 					{% endif %} 
-					</a><blockquote>-{{item.product.ingredient1.ingreName}}<br/>-{{item.product.ingredient2.ingreName}}<br/>-{{item.product.ingredient3.ingreName}}</blockquote></td>
-				<td>{{ item.quantity }}</td>
+					</a><blockquote style="font-family:Museo;font-size:15px">Ingredient Properties<br/>-{{item.product.ingredient1.ingreName}}<br/>-{{item.product.ingredient2.ingreName}}<br/>-{{item.product.ingredient3.ingreName}}</blockquote></td>
+				<td style="width:60px">{{ item.quantity }}</td>
 				<td> ${{ item.subtotal }}</td>
 				<td> <input type="text" name="custom{{forloop.counter}}"/></td>
-				<td style="padding-top:5px; padding-bottom:5px; padding-left:50px; padding-right:50px; text-align:center"> 
+				<td style="padding-top:5px; padding-bottom:5px; padding-left:10px; padding-right:10px; text-align:center"> 
 					<a href = "{% url 'creamUsers:addproduct' item.product.id %}"><img src="{% static "creamUsers/images/plus.png" %}" alt=""></a>
 					<a href = "{% url 'creamUsers:minus' item.product.id %}"><img src="{% static "creamUsers/images/minus.png" %}" alt=""></a>
 					<a href = "{% url 'creamUsers:remove' item.product.id %}"><img src="{% static "creamUsers/images/remove.png" %}" alt=""></a>
@@ -144,7 +144,7 @@
 			{% endfor %}
 		</table><br/><br/>
 		
-		<div class="" style="padding-left:2px;margin-left:9%;text-align:left;font-family:Museo">
+		<div class="" style="padding-left:2px;margin-left:0;text-align:left;font-family:Museo">
 			<p><strong style="color:white;background:black;width:200px;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;font-size:18px">Your total is</strong>
 			<strong style="padding-left:10px;"> ${{cart.total}} </strong></p>
 		</div>
@@ -156,11 +156,11 @@
 		<p> Total is ${{cart.total}} </p>
 		-->
 		<div style="margin-left:auto;margin-right:auto;text-align:center;">
-			<div style="width:150px; float:left; margin-left:33%;text-align:center;">
+			<div style="width:150px; float:left; margin-left:36%;text-align:center;">
 				<a style="padding-right:30px;" href= "/"><img src="{% static "creamUsers/images/browse.png" %}" style="padding-top:6px;" alt="Edit Cart"><br/><p>Explore More</p></a>
 			</div>
 			<div style="width:120px; float:left; padding-top:6px;">
-				<img src="{% static "creamUsers/images/checkout.png" %}" alt="Checkout"><br/><input type="submit" value="Checkout"/>
+				<img src="{% static "creamUsers/images/checkout.png" %}" alt="Checkout"><br/><input type="submit" value="Checkout" style="background:none;box-shadow:none;border:none;padding-top:7px"/>
 			</div>
 		</div>
 	</div>

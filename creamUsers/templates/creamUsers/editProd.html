@@ -21,8 +21,8 @@
 		top:30%;
 		margin-left:auto;
 		margin-right:auto;
-		height:500px; 
-		width:500px;
+		height:650px; 
+		width:650px;
 		border: 5px solid black; 
 		padding:30px; border-radius:50%
 	}
@@ -49,6 +49,14 @@
 		border:2px solid black;
 	}
 	select#penetrate{
+		margin-top:10px;
+		font-size:16px;
+		color:black;
+		background-color:white;
+		font-family:Museo;
+		border:2px solid black;
+	}
+	select#main{
 		margin-top:10px;
 		font-size:16px;
 		color:black;
@@ -155,7 +163,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">Wayne Pharmaceutics</a>
+			<div class="navbar-brand" style="padding-top:20px;"><a href="/"></a></div>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
@@ -184,7 +192,7 @@
 
 
 
-<div id="buildquestion"><br/><br/>
+<div id="edit" style="text-align:center"><br/><br/>
 	<h2 class="question">{{"Tell us how you want your cream!"}}</h2><br/>
 	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 	{% if messages %}
