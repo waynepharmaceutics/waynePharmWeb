@@ -14,13 +14,7 @@
 		margin: 0 auto -4em;
 	}
 	footer{
-
-		width:100%;
-		position:absolute;
-		bottom:0;
-		left:0;
-		right:0;
-		background-color:white;
+		margin-bottom:-2%;
 	}
 	th.top{
 		padding-left:50px;
@@ -109,9 +103,9 @@
 {% get_cart as cart %}
 
 		{% ifnotequal cart.count 0 %}
-<form action = "{% url 'creamUsers:checkout'%}" method = "post" style="width:1000px; margin-left:auto;margin-right: auto;">
+<form action = "{% url 'creamUsers:checkout'%}" method = "post" style="width:1000px; margin-left:auto; margin-right: auto;">
 {% csrf_token %}
-		<table style="float:center; text-align:center;margin-left:auto;margin-right:auto; width:1000px">
+		<table style="text-align:center;margin-left:auto;margin-right:auto; width:1000px">
 
 			
 			<tr style="font-family:Museo;font-size:18px;text-align: center;font-weight:bold">
@@ -155,7 +149,7 @@
 		<p><a class="linky" href = "{% url 'creamUsers:checkout'%}" style="font-family:Museo; background:black;color:white;" > Check Out </a></p>
 		<p> Total is ${{cart.total}} </p>
 		-->
-		<div style="margin-left:auto;margin-right:auto;text-align:center;">
+		<div style="margin-left:auto;margin-right:auto;text-align:center;padding-bottom:30px">
 			<div style="width:150px; float:left; margin-left:36%;text-align:center;">
 				<a style="padding-right:30px;" href= "/"><img src="{% static "creamUsers/images/browse.png" %}" style="padding-top:6px;" alt="Edit Cart"><br/><p>Explore More</p></a>
 			</div>
