@@ -18,10 +18,7 @@
 	<script type="text/javascript" src="{% static "creamUsers/nhpup.js" %}"></script>
 	<style>
 
-	footer{
-		border-top:1px solid black;
-		margin-bottom:-10%;
-	}
+
 	</style>
 </head>
 
@@ -30,8 +27,9 @@
 {% block content %}
 {% endblock %}
 
-<footer>
-	<div class="container-fluid">
+<footer class="page-row" style="display:block">
+	<hr>
+	<div class="container-fluid" style="text-align:center;margin-left:auto;margin-right:auto;left:0;right:0;">
 		<div class="row">
 			<div class="centered-pills">
 				<ul class="nav nav-pills">
@@ -53,5 +51,6 @@
 			</div>
 		</div>
 	</div>
+	<br/>
 </footer>
 </body>

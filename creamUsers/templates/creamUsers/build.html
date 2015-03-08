@@ -132,8 +132,13 @@
 
 	}
 </script>
+<style>
+	footer{
+		display:block;
+	}
+</style>
 
-<body>
+
 <nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container-fluid col-md-8" style="float:center;border-left:0px; border-right:0px; margin-left:auto; margin-right: auto;">
 		<div class="navbar-header">
@@ -143,7 +148,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<div class="navbar-brand" style="padding-top:20px;"><a href="/"></a></div>
+			<a class="navbar-brand" style="" href="/"></a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
@@ -170,327 +175,229 @@
 	</div>
 </nav>
 
-
+<div class="page-wrap" style="display:table-row">
 <form action = "{% url 'creamUsers:selectAnswer' %}" method = "post">
 {% csrf_token %}
-<div id="q_1" style="display:block; height:900px;">
-	<div id="buildtitle">
-	<h2><center/><strong/>Ready to get started on your own cream?<br/>Help us answer these questions to customize your product!</h2>
-	<br/><br/><br/>
-	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+	<div id="q_1" style="display:block; height:750px;">
+		<div id="buildtitle">
+		<h2><center/><strong/>Ready to get started on your own cream?<br/>Help us answer these questions to customize your product!</h2>
+		<br/><br/><br/>
+		{% if error_message %}<p style="text-align:center;"><strong>{{ error_message }}<br/></strong></p>{% endif %}
 
-	{% if messages %}
-		<ul class="messages">
-		{% for message in messages %}
-		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-		{% endfor %}
-		</ul>
-	{% endif %}
-	</div>
-	<div class="container1">
-		<div class="progress">
-			<div class="progress-point">
-				<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
-				</p>
-				<p id="progress_25" class="progressPoint " style="width: 25%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
-				</p>
-				<p id="progress_50" class="progressPoint " style="width: 50%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
-				</p>
-				<p id="progress_75" class="progressPoint " style="width: 75%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
-				</p>
-				<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
-				</p>
-			</div>
-			<div id="progress" class="progress-bar" style="width:0%;"></div>
+		{% if messages %}
+			<ul class="messages">
+			{% for message in messages %}
+			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
 		</div>
-	</div>
-	<div id="buildquestion">
-		<h2 align="center" class="question">What is your facial skin type?</h2><br/>
-		<label for="img1"><img class="imga" src="{% static "creamUsers/images/normalskin.png" %}" onclick="toggle_visibility('q_1');expandDiv('q_2')">
-		<input type="checkbox" class="chk" id="img1" name="button1" style="visibility:hidden" value="normal"></input></label>
-		
-		<label for="img2"><img class="imga" src="{% static "creamUsers/images/oilyskin.png" %}" onclick="toggle_visibility('q_1');expandDiv('q_2')">
-		<input type="checkbox" class="chk" id="img2" name="button1" style="visibility:hidden" value="oily"></input></label>
+		<div class="container1">
+			<div class="progress">
+				<div class="progress-point">
+					<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
+					</p>
+					<p id="progress_25" class="progressPoint " style="width: 25%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
+					</p>
+					<p id="progress_50" class="progressPoint " style="width: 50%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
+					</p>
+					<p id="progress_75" class="progressPoint " style="width: 75%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
+					</p>
+					<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
+					</p>
+				</div>
+				<div id="progress" class="progress-bar" style="width:0%;"></div>
+			</div>
+		</div>
+		<div id="buildquestion">
+			<h2 align="center" class="question">What is your facial skin type?</h2><br/>
+			<label for="img1"><img class="imga" src="{% static "creamUsers/images/normalskin.png" %}" onclick="toggle_visibility('q_1');expandDiv('q_2')">
+			<input type="checkbox" class="chk" id="img1" name="button1" style="visibility:hidden" value="normal"></input></label>
 			
-		<label for="img3"><img class="imga" src="{% static "creamUsers/images/dryskin.png" %}" onclick="toggle_visibility('q_1');expandDiv('q_2')">
-		<input type="checkbox" class="chk" id="img3" name="button1" style="visibility:hidden" value="dry"></input></label>
+			<label for="img2"><img class="imga" src="{% static "creamUsers/images/oilyskin.png" %}" onclick="toggle_visibility('q_1');expandDiv('q_2')">
+			<input type="checkbox" class="chk" id="img2" name="button1" style="visibility:hidden" value="oily"></input></label>
+				
+			<label for="img3"><img class="imga" src="{% static "creamUsers/images/dryskin.png" %}" onclick="toggle_visibility('q_1');expandDiv('q_2')">
+			<input type="checkbox" class="chk" id="img3" name="button1" style="visibility:hidden" value="dry"></input></label>
+				
+			<label for="img4"><img class="imga" src="{% static "creamUsers/images/comboskin.png" %}" onclick="toggle_visibility('q_1');expandDiv('q_2')">
+			<input type="checkbox" class="chk" id="img4" name="button1" style="visibility:hidden" value="combination"></input></label>
+		</div>
+
+	</div>
+
+	<div id="q_2" style="display: none;height:750px">
+		<div id="buildtitle">
+		<h2><center/><strong/><br/></h2>
+		<br/><br/><br/>
+		</div>
+		<div class="container1">
+			<div class="progress">
+				<div class="progress-point">
+					<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
+					</p>
+					<p id="progress_25" class="progressPoint " style="width: 25%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
+					</p>
+					<p id="progress_50" class="progressPoint " style="width: 50%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
+					</p>
+					<p id="progress_75" class="progressPoint " style="width: 75%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
+					</p>
+					<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
+					</p>
+				</div>
+				<div id="progress" class="progress-bar" style="width:25%;"></div>
+			</div>
+		</div>
+		<div id="buildquestion">
+			<h2 align="center" class="question">When do you most often apply facial creams?</h2><br/>
 			
-		<label for="img4"><img class="imga" src="{% static "creamUsers/images/comboskin.png" %}" onclick="toggle_visibility('q_1');expandDiv('q_2')">
-		<input type="checkbox" class="chk" id="img4" name="button1" style="visibility:hidden" value="combination"></input></label>
-	</div>
+			<label for="img5"><img class="imga" src="{% static "creamUsers/images/morning.png" %}" onclick="toggle_visibility('q_2');expandDiv('q_3')">
+			<input type="checkbox" class="chk " id="img5" name="button2" style="visibility:hidden" value="morning"></input></label>
 
-	<footer style="margin-bottom:-10%">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="centered-pills">
-				<ul class="nav nav-pills">
-					<li><a href="/">Home</a></li>
-					<li><a href="/plan/">Ingredients</a></li>
-					<li><a href="/build/">Build</a></li>
-					<li><a href="/about/">About Us</a></li>
-					<li><a href="/contact/">Contact Us</a></li>
-				</ul>
-			</div>
-				
-			<div class="socialbuttons">
-				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like us on FB!"></a>
-				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow us on Twitter!"></a>
-				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Like us on Google Plus!"></a>
-			</div>
-			<div class="text-center">
-				<small><strong> &copy; <a href="/">Wayne Pharmaceutics</a> 2015</strong></small>
+			<label for="img6"><img class="imga" src="{% static "creamUsers/images/allday.png" %}" onclick="toggle_visibility('q_2');expandDiv('q_3')">
+			<input type="checkbox" class="chk " id="img6" name="button2" style="visibility:hidden" value="all day"></input></label>
+
+			<label for="img7"><img class="imga" src="{% static "creamUsers/images/nighttime.png" %}" onclick="toggle_visibility('q_2');expandDiv('q_3')">
+			<input type="checkbox" class="chk " id="img7" name="button2" style="visibility:hidden" value="nighttime"></input></label>
+
+			<div id="buttons text-align:center"><br/>
+				<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_2');expandDiv('q_1')" Value="Previous">
 			</div>
 		</div>
 	</div>
-	</footer>
-</div>
 
-<div id="q_2" style="display: none;height:900px">
-	<div id="buildtitle">
-	<h2><center/><strong/><br/></h2>
-	<br/><br/><br/>
-	</div>
-	<div class="container1">
-		<div class="progress">
-			<div class="progress-point">
-				<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
-				</p>
-				<p id="progress_25" class="progressPoint " style="width: 25%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
-				</p>
-				<p id="progress_50" class="progressPoint " style="width: 50%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
-				</p>
-				<p id="progress_75" class="progressPoint " style="width: 75%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
-				</p>
-				<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
-				</p>
-			</div>
-			<div id="progress" class="progress-bar" style="width:25%;"></div>
+
+	<div id="q_3" style="display: none; height:750px">
+		<div id="buildtitle">
+		<h2><center/><strong/><br/></h2>
+		<br/><br/><br/>
 		</div>
-	</div>
-	<div id="buildquestion">
-		<h2 align="center" class="question">When do you most often apply facial creams?</h2><br/>
+		<div class="container1">
+			<div class="progress">
+				<div class="progress-point">
+					<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
+					</p>
+					<p id="progress_25" class="progressPoint " style="width: 25%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
+					</p>
+					<p id="progress_50" class="progressPoint " style="width: 50%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
+					</p>
+					<p id="progress_75" class="progressPoint " style="width: 75%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
+					</p>
+					<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
+					</p>
+				</div>
+				<div id="progress" class="progress-bar" style="width:50%;"></div>
+			</div>
+		</div>
+		</section>
+		<div id="buildquestion">
+			<h2 align="center" class="question">What is your age group?</h2><br/>
+			<label for="img8"><img class="imga" src="{% static "creamUsers/images/under25.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+			<input type="checkbox" class="chk " id="img8" name="button3" style="visibility:hidden" value="under 25"></input></label><br/>
 		
-		<label for="img5"><img class="imga" src="{% static "creamUsers/images/morning.png" %}" onclick="toggle_visibility('q_2');expandDiv('q_3')">
-		<input type="checkbox" class="chk " id="img5" name="button2" style="visibility:hidden" value="morning"></input></label>
-
-		<label for="img6"><img class="imga" src="{% static "creamUsers/images/allday.png" %}" onclick="toggle_visibility('q_2');expandDiv('q_3')">
-		<input type="checkbox" class="chk " id="img6" name="button2" style="visibility:hidden" value="all day"></input></label>
-
-		<label for="img7"><img class="imga" src="{% static "creamUsers/images/nighttime.png" %}" onclick="toggle_visibility('q_2');expandDiv('q_3')">
-		<input type="checkbox" class="chk " id="img7" name="button2" style="visibility:hidden" value="nighttime"></input></label>
-
-		<div id="buttons text-align:center"><br/>
-			<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_2');expandDiv('q_1')" Value="Previous">
-		</div>
-	</div>
-	<footer style="margin-bottom:-10%">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="centered-pills">
-				<ul class="nav nav-pills">
-					<li><a href="/">Home</a></li>
-					<li><a href="/plan/">Ingredients</a></li>
-					<li><a href="/build/">Build</a></li>
-					<li><a href="/about/">About Us</a></li>
-					<li><a href="/contact/">Contact Us</a></li>
-				</ul>
-			</div>
-				
-			<div class="socialbuttons">
-				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like us on FB!"></a>
-				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow us on Twitter!"></a>
-				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Like us on Google Plus!"></a>
-			</div>
-			<div class="text-center">
-				<small><strong> &copy; <a href="/">Wayne Pharmaceutics</a> 2015</strong></small>
-			</div>
-		</div>
-	</div>
-	</footer>
-
-</div>
-
-
-<div id="q_3" style="display: none; height:900px">
-	<div id="buildtitle">
-	<h2><center/><strong/><br/></h2>
-	<br/><br/><br/>
-	</div>
-	<div class="container1">
-		<div class="progress">
-			<div class="progress-point">
-				<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
-				</p>
-				<p id="progress_25" class="progressPoint " style="width: 25%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
-				</p>
-				<p id="progress_50" class="progressPoint " style="width: 50%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
-				</p>
-				<p id="progress_75" class="progressPoint " style="width: 75%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
-				</p>
-				<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
-				</p>
-			</div>
-			<div id="progress" class="progress-bar" style="width:50%;"></div>
-		</div>
-	</div>
-	</section>
-	<div id="buildquestion">
-		<h2 align="center" class="question">What is your age group?</h2><br/>
-		<label for="img8"><img class="imga" src="{% static "creamUsers/images/under25.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-		<input type="checkbox" class="chk " id="img8" name="button3" style="visibility:hidden" value="under 25"></input></label><br/>
-	
-		<label for="img9"><img class="imga" src="{% static "creamUsers/images/26to35.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-		<input type="checkbox" class="chk " id="img9" name="button3" style="visibility:hidden" value="26 to 35"></input></label><br/>
-	
-		<label for="img10"><img class="imga" src="{% static "creamUsers/images/36to49.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-		<input type="checkbox" class="chk " id="img10" name="button3" style="visibility:hidden" value="36 to 49"></input></label><br/>
+			<label for="img9"><img class="imga" src="{% static "creamUsers/images/26to35.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+			<input type="checkbox" class="chk " id="img9" name="button3" style="visibility:hidden" value="26 to 35"></input></label><br/>
 		
-		<label for="img11"><img class="imga" src="{% static "creamUsers/images/50plus.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-		<input type="checkbox" class="chk " id="img11" name="button3" style="visibility:hidden" value="over 50"></input></label><br/>
+			<label for="img10"><img class="imga" src="{% static "creamUsers/images/36to49.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+			<input type="checkbox" class="chk " id="img10" name="button3" style="visibility:hidden" value="36 to 49"></input></label><br/>
+			
+			<label for="img11"><img class="imga" src="{% static "creamUsers/images/50plus.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+			<input type="checkbox" class="chk " id="img11" name="button3" style="visibility:hidden" value="over 50"></input></label><br/>
+			
+			<div id="buttons text-align:center"><br/>
+				<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_3');expandDiv('q_2')" Value="Previous">
+			</div>
+		</div>
+
+	</div>
+
+
+	<div id="q_4" style="display: none; height:750px">
+		<div id="buildtitle">
+			<h2><center/><strong/><br/></h2>
+			<br/><br/><br/>
+		</div>
+		<div class="container1">
+			<div class="progress">
+				<div class="progress-point">
+					<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
+					</p>
+					<p id="progress_25" class="progressPoint " style="width: 25%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
+					</p>
+					<p id="progress_50" class="progressPoint " style="width: 50%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
+					</p>
+					<p id="progress_75" class="progressPoint " style="width: 75%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
+					</p>
+					<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
+					</p>
+				</div>
+				<div id="progress" class="progress-bar" style="width:75%;"></div>
+			</div>
+		</div>
+		<div id="buildquestion" style="width: 1200px;">
+			<h2 align="center" class="question">How would you describe yourself?</h2><br/>
+			<label for="img12"><img style="width:300px;height:200px" class="imga" src="{% static "creamUsers/images/energetic.png" %}">
+			<input type="checkbox" class="chk " id="img12" name="button4" style="visibility:hidden" value="energetic" onclick="toggle_visibility('q_4');expandDiv('q_5')"><p>Energetic</p></input></label>
 		
-		<div id="buttons text-align:center"><br/>
-			<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_3');expandDiv('q_2')" Value="Previous">
-		</div>
-	</div>
-	<footer style="margin-bottom:-10%">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="centered-pills">
-				<ul class="nav nav-pills">
-					<li><a href="/">Home</a></li>
-					<li><a href="/plan/">Ingredients</a></li>
-					<li><a href="/build/">Build</a></li>
-					<li><a href="/about/">About Us</a></li>
-					<li><a href="/contact/">Contact Us</a></li>
-				</ul>
-			</div>
-				
-			<div class="socialbuttons">
-				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like us on FB!"></a>
-				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow us on Twitter!"></a>
-				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Like us on Google Plus!"></a>
-			</div>
-			<div class="text-center">
-				<small><strong> &copy; <a href="/">Wayne Pharmaceutics</a> 2015</strong></small>
-			</div>
-		</div>
-	</div>
-	</footer>
-
-</div>
-
-
-<div id="q_4" style="display: none; height:900px">
-	<div id="buildtitle">
-	<h2><center/><strong/><br/></h2>
-	<br/><br/><br/>
-	</div>
-	<div class="container1">
-		<div class="progress">
-			<div class="progress-point">
-				<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
-				</p>
-				<p id="progress_25" class="progressPoint " style="width: 25%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
-				</p>
-				<p id="progress_50" class="progressPoint " style="width: 50%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
-				</p>
-				<p id="progress_75" class="progressPoint " style="width: 75%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
-				</p>
-				<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
-				</p>
-			</div>
-			<div id="progress" class="progress-bar" style="width:75%;"></div>
-		</div>
-	</div>
-	<div id="buildquestion" style="width: 1200px;">
-		<h2 align="center" class="question">How would you describe yourself?</h2><br/>
-		<label for="img12"><img style="width:300px;height:200px" class="imga" src="{% static "creamUsers/images/energetic.png" %}">
-		<input type="checkbox" class="chk " id="img12" name="button4" style="visibility:hidden" value="energetic" onclick="toggle_visibility('q_4');expandDiv('q_5')"><p>Energetic</p></input></label>
-	
-		<label for="img13"><img style="width:200px;height:300px" class="imga" src="{% static "creamUsers/images/socialite.png" %}">
-		<input type="checkbox" class="chk " id="img13" name="button4" style="visibility:hidden" value="social" onclick="toggle_visibility('q_4');expandDiv('q_5')"><br/><p>Socialite</p></input></label>
-	
-		<label for="img14"><img style="width:300px;height:200px" class="imga" src="{% static "creamUsers/images/reserved.png" %}">
-		<input type="checkbox" class="chk " id="img14" name="button4" style="visibility:hidden" value="reserved" onclick="toggle_visibility('q_4');expandDiv('q_5')"><p>Reserved</p></input></label>
+			<label for="img13"><img style="width:200px;height:300px" class="imga" src="{% static "creamUsers/images/socialite.png" %}">
+			<input type="checkbox" class="chk " id="img13" name="button4" style="visibility:hidden" value="social" onclick="toggle_visibility('q_4');expandDiv('q_5')"><br/><p>Socialite</p></input></label>
 		
-		<div id="buttons text-align:center"><br/>
-			<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_4');expandDiv('q_3')" Value="Previous">
-		</div>
-	</div>
-	<footer style="margin-bottom:-10%">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="centered-pills">
-				<ul class="nav nav-pills">
-					<li><a href="/">Home</a></li>
-					<li><a href="/plan/">Ingredients</a></li>
-					<li><a href="/build/">Build</a></li>
-					<li><a href="/about/">About Us</a></li>
-					<li><a href="/contact/">Contact Us</a></li>
-				</ul>
-			</div>
-				
-			<div class="socialbuttons">
-				<a href="#"><img src="{% static "creamUsers/images/fb.png" %}" alt="Like us on FB!"></a>
-				<a href="#"><img src="{% static "creamUsers/images/tweet.png" %}" alt="Follow us on Twitter!"></a>
-				<a href="#"><img src="{% static "creamUsers/images/gplus.png" %}" alt="Like us on Google Plus!"></a>
-			</div>
-			<div class="text-center">
-				<small><strong> &copy; <a href="/">Wayne Pharmaceutics</a> 2015</strong></small>
+			<label for="img14"><img style="width:300px;height:200px" class="imga" src="{% static "creamUsers/images/reserved.png" %}">
+			<input type="checkbox" class="chk " id="img14" name="button4" style="visibility:hidden" value="reserved" onclick="toggle_visibility('q_4');expandDiv('q_5')"><p>Reserved</p></input></label>
+			
+			<div id="buttons text-align:center"><br/>
+				<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_4');expandDiv('q_3')" Value="Previous">
 			</div>
 		</div>
-	</div>
-	</footer>
 
-</div>
-	
-<div id="q_5" style="display: none; height:1000px">
-	<div id="buildtitle">
-	<h2><center/><strong/><br/></h2>
-	<br/><br/><br/>
 	</div>
-	<div class="container1">
-		<div class="progress">
-			<div class="progress-point">
-				<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
-				</p>
-				<p id="progress_25" class="progressPoint " style="width: 25%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
-				</p>
-				<p id="progress_50" class="progressPoint " style="width: 50%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
-				</p>
-				<p id="progress_75" class="progressPoint " style="width: 75%;">
-					<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
-				</p>
-				<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
-				</p>
+
+	<div id="q_5" style="display: none; height:500px">
+		<div id="buildtitle">
+			<h2><center/><strong/><br/></h2>
+			<br/><br/><br/>
+		</div>
+		<div class="container1">
+			<div class="progress">
+				<div class="progress-point">
+					<p id="progress_0" class="progressPoint displayNone" style="width: 0%;">
+					</p>
+					<p id="progress_25" class="progressPoint " style="width: 25%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_20_status">
+					</p>
+					<p id="progress_50" class="progressPoint " style="width: 50%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_40_status">
+					</p>
+					<p id="progress_75" class="progressPoint " style="width: 75%;">
+						<input type="radio" class="progressStatus" name="progress_status" id="progress_60_status">
+					</p>
+					<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
+					</p>
+				</div>
+				<div id="progress" class="progress-bar" style="width:100%;"></div>
 			</div>
-			<div id="progress" class="progress-bar" style="width:100%;"></div>
+		</div>
+		<div id="buildquestion">
+			<h2><center/><strong/>Questions done! Click Submit to see your profile!<br/></h2>
+			<div id="buttons text-align:center"><br/>
+				<input type="submit" style="color:white;border:1px solid white;background:black;" value="Finish"/>
+			</div>
 		</div>
 	</div>
-	<div id="buildquestion">
-	<div id="buildtitle">
-	<h2><center/><strong/>Questions done! Click Submit to see your profile!<br/></h2>
-		<div id="buttons text-align:center"><br/>
-		<input type="submit" style="color:white;border:1px solid white;background:black;" value="Finish"/>
-	</div>
-	</div>
-	
-</div>
+
 </form>
-
+</div>
 
 {% endblock %}

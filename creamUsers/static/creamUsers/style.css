@@ -1,5 +1,6 @@
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
 
+
 @media (max-width: 1080px){
 	.carousel-inner>.active{
 		width:auto;
@@ -8,6 +9,34 @@
 	}
 }
 
+tr{
+	text-align:center;
+	vertical-align:middle;
+}
+hr{
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+	background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+	background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+	background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+}
+
+
+body{
+	display:table;
+	width:100%;
+	height:100%;
+	overflow:scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+
+.page-row{
+	display:table-row;
+	height:1px;
+	table-align:center;
+}
 /*
 .navbar.transparent.navbar-inverse.navbar-fixed-top{
 	border-width: 0px;
@@ -28,11 +57,11 @@
 }
 .navbar-brand{
 	background: url(images/logo.png) no-repeat;
-	width:255px;
+	width:260px;
 }
 .navbar-brand:hover{
 	background: url(images/logohover.png) no-repeat;
-	width:255px;
+	width:260px;
 }
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
 	font-size:30px;
@@ -271,7 +300,16 @@ a.btn.btn-sm:hover, a.btn.btn-sm:focus{
 
 }
 
-
+input.buttonhover:hover, input.buttonhover:focus{
+	background:white;
+	color:black;
+	border:1px solid black;
+}
+input.buttonhover{
+	color:white;
+	border:1px solid white;
+	background:black;
+}
 .LatestNews blockquote{
 	border:none;
 	float:left;

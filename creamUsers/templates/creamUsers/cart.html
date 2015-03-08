@@ -62,7 +62,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<div class="navbar-brand" style="padding-top:20px;"></div>
+			<a class="navbar-brand" style="" href="/"></a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
@@ -95,7 +95,9 @@
 {% if messages %}
 		<ul class="messages">
 		{% for message in messages %}
-		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		<div style="text-align:center; font-family:Museo; font-size: 18px; text-decoration:bold;">
+			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li><br/>
+		</div>
 		{% endfor %}
 		</ul>
 {% endif %}
@@ -114,7 +116,7 @@
 				<th class="qty" style="padding-left:10px;padding-right:10px;color:white;background:black;border:1px solid white">Quantity</th>
 				<th class="tot" style="text-align: center; padding-left:20px;padding-right:20px;color:white;background:black;border:1px solid white">Total</th>
 				<th class="name" style="text-align: center; padding-left:50px;padding-right:50px;color:white;background:black;border:1px solid white">Engrave the Jar (Max 8 Char)<br/></th>
-				<th class="top" style="">Actions</th>
+				<th class="top" style="text-align:center;">Actions</th>
 			</tr>
 
 			{% for item in cart.items %}

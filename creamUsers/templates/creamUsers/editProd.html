@@ -7,22 +7,14 @@
 {% load staticfiles %}
 {% load bootstrap3 %}
 <style>
-	footer{
-		width:100%;
-		height:180px;
-		position:absolute;
-		bottom:0;
-		left:0;
-		right:0;
-		background-color:white;
-	}
+
 	form{
 		background: whitesmoke;
 		top:30%;
 		margin-left:auto;
 		margin-right:auto;
-		height:650px; 
-		width:650px;
+		height:700px; 
+		width:700px;
 		border: 5px solid black; 
 		padding:30px; border-radius:50%
 	}
@@ -163,7 +155,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<div class="navbar-brand" style="padding-top:20px;"><a href="/"></a></div>
+			<a class="navbar-brand" style="" href="/"></a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
@@ -192,7 +184,7 @@
 
 
 
-<div id="edit" style="text-align:center"><br/><br/>
+<div id="edit" style="text-align:center; padding-top:30px;"><br/><br/>
 	<h2 class="question">{{"Tell us how you want your cream!"}}</h2><br/>
 	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 	{% if messages %}
@@ -269,18 +261,18 @@
 		</select>
 		<strong>
 		<div id="third_select1" class="6">
-			<br/><p>Vitamin A place holder</p>			
+			<br/><p>Vitamin A is a strong antioxidant that helps reduce fine lines and wrinkles.</p>			
 		</div>
 		<div id="third_select2" class="7" style="display:none">
-			<br/><p>Caffeine place holder</p>
+			<br/><p>Caffeine is used to tighten up skin, giving a more youthful look.</p>
 		</div>
 		<div id="third_select3" class="8" style="display:none">
-			<br/><p>Cocoa butter place holder</p>
+			<br/><p>Cocoa butter is ideal for those that want to keep their skin soft and smooth.</p>
 		</div>
 		</strong>
 	</div>
 	<div id="buttons" style="height:130px"><br/>
-		<input type="submit" style="color:white;border:1px solid white;background:black;" value="Done Customizing"/>
+		<input class="buttonhover" type="submit" style="font-family: Museo; font-size: 16px; padding:8px;" value="Done Customizing"/>
 	</div>
 	</form>
 </div>
