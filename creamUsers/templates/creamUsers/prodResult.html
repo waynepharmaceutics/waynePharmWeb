@@ -161,25 +161,27 @@
 	<div id="buildtitle">
 		<h2><center/><strong/></h2>
 	</div>
-	<h2 class="question">Based on the info you've provided, this is what we recommend...</h2><br/><br/>	
-	<div id="results" style="width:60%; margin-left: auto; margin-right: auto; text-align:center; border: 3px solid black; padding-bottom:30px; border-radius: 8px;">
+	<h2 class="question">Based on the information you've provided, this is what we recommend...</h2><br/><br/>	
 		{% if answer %}
-			<h3>The information you've provided us:</h3><br/><p style="font-family:Museo; font-size: 17px">You are {{answer.question3}} years old, and are {{answer.question4}}. You also have {{answer.question1}} skin, and apply your skin products {{answer.question2}}.</p>
+			<div id="results" style="width:60%; margin-left: auto; margin-right: auto; text-align:center;border-left:3px solid black;border-right:3px solid black; border-top: 3px solid black; padding-bottom:30px; border-radius: 8px;">
+				<h3>The information you've provided us:</h3><br/><p style="font-family:Museo; font-size: 17px">You are {{answer.question3}} years old, and are {{answer.question4}}. You also have {{answer.question1}} skin, and apply your skin products {{answer.question2}}.</p>
+			</div>
+
 		{% endif %}
-	</div>
-	<div id="suggestions" style="width:60%; margin-left: auto; margin-right: auto; text-align:center;border-radius: 8px; border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black; text-align:center; padding-bottom:50px;">
+
+	<div id="suggestions" style="width:60%; margin-left: auto; margin-right: auto; text-align:center;border-radius: 8px; border: 3px solid black; text-align:center; padding-bottom:50px;">
 		<br/><h3>What we recommend:</h3>
 		<form action=""><br/>
-			<p style="font-family:Museo; font-size: 18px">Cream Base Thickness:</p>
-			<p>{{ingredient1.ingreName}}: {{ingredient1.description}}</p>
+			<p style="font-family:Museo; font-size: 18px">1. Cream Base Thickness: {{ingredient1.ingreName}}</p>
+			<p>- {{ingredient1.description}}</p>
 		</form>
 		<form action=""><br/>
-			<p style="font-family:Museo; font-size: 18px">Penetration agent:</p>
-			<p>{{ingredient2.ingreName}}: {{ingredient2.description}}</p>
+			<p style="font-family:Museo; font-size: 18px">2. Penetration agent: {{ingredient2.ingreName}}</p>
+			<p>- {{ingredient2.description}}</p>
 		</form>
 		<form action=""><br/>
-			<p style="font-family:Museo; font-size: 18px">Main Component:</p>
-			<p>{{product.ingredient3.ingreName}}: {{product.ingredient3.description}}</p>
+			<p style="font-family:Museo; font-size: 18px">3. Main Component: {{product.ingredient3.ingreName}}</p>
+			<p>- {{product.ingredient3.description}}</p>
 			<br/><br/>
 		</form>
 		<div id="buttons">

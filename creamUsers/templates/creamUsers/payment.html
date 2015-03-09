@@ -119,7 +119,7 @@
 						{% else %} 
 							Your Cream Build {{forloop.counter}}
 						{% endif %} 
-						<blockquote style="font-family:Museo;font-size:15px">-{{order.product.ingredient1.ingreName}}<br/>-{{order.product.ingredient2.ingreName}}<br/>-{{order.product.ingredient3.ingreName}}</blockquote></td>
+						<blockquote style="font-family:Museo;font-size:15px">Ingredient Properties<br/>-{{order.product.ingredient1.ingreName}}<br/>-{{order.product.ingredient2.ingreName}}<br/>-{{order.product.ingredient3.ingreName}}</blockquote></td>
 					<td>{{ order.quantity }}</td>
 					<td> ${{ order.getSubTotal }}</td>
 					<td> {{order.custom}}</td>
@@ -127,17 +127,17 @@
 				{% endfor %}
 			</table><br/><br/>
 			
-			<div class="" style="padding-left:2px;margin-left:9%;text-align:left;font-family:Museo">
+			<div class="" style="padding-left:2px;margin-left:75%;text-align:left;font-family:Museo">
 				<p><strong style="color:white;background:black;width:200px;padding-top:3px;padding-bottom:3px;padding-left:10px;padding-right:10px;font-size:18px">Your total is</strong>
 				<strong style="padding-left:10px;"> ${{cart.total}} </strong></p>
 			</div>
 			<br/><br/><br/><br/>
-			<div style="text-align:center; margin-left: auto; margin-right: auto;">
+			<div style="text-align:justify; margin-left:75%">
 				
 					{% csrf_token %}
 					{{ form.render }}
 
-				<br/><p><a class="backtocart" style="padding: 5px; border: 1px solid black; border-radius:5px;" href = "{% url 'creamUsers:paymentBackToCart' invoicenum %}" > Back to Cart </a></p>
+				<br/><p><a class="backtocart" style="margin-left:35px; padding: 5px; border: 1px solid black; border-radius:5px;" href = "{% url 'creamUsers:paymentBackToCart' invoicenum %}" > Back to Cart </a></p>
 			</div>
 </div>
 </span>
