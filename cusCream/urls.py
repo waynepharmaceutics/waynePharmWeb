@@ -32,4 +32,5 @@ urlpatterns = patterns('',
     url(r'^resetpassword/$', 'django.contrib.auth.views.password_reset', name = 'password_reset'),
     url(r'^reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm', name = 'password_reset_confirm'),
     url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete', name = 'password_reset_complete'),
+    url(r'^send/$', 'creamUsers.views.sendContactEmail',name='contactSend'),
 )

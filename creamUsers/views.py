@@ -17,6 +17,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 import datetime
 from django.views.decorators.csrf import csrf_exempt
+from django.core.mail import send_mail
 
 ############################Build Product & Select Answer#####################
 
@@ -172,6 +173,20 @@ def LoginRequest(request):
 def LogoutRequest(request):
 	logout(request)
 	return HttpResponseRedirect('/')
+	
+########this send emails in the contact#######################################
+def sendContactEmail(request):
+	try:
+		name=request.POST['name']
+		email=request.POST['email']
+		message=request.POST['message']
+	except KeyError:
+		messages.add_message(request, messages.ERROR, "We apologize that some of your texts are not captured correctly. Please build your skin profile again.")
+		return HttpResponseRedirect('/contact/')						  
+	else:
+		send_mail('PharmaCrafted Inquiry Questions', name+','+email+','+message, 'wayne.pharmaceutics@gmail.com',['wayne.pharmaceutics@gmail.com'], fail_silently=False)
+		messages.add_message(request, messages.INFO, "We have received your email and we will get back to you as soon as we can.")
+		return HttpResponseRedirect('/contact/')
 
 ##################Below Code Deal With Carts##################################
 def Cartdetail(request):

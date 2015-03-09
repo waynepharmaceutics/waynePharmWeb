@@ -202,7 +202,17 @@ footer{
 
 <div align="center" id="page-wrap">
 	<div id="contact-area">
-		<form action="contact.php" method="post">
+	{% if messages %}
+		<ul class="messages">
+		{% for message in messages %}
+		<div style="text-align:center; font-family:Museo; font-size: 18px; text-decoration:bold;">
+			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li><br/>
+		</div>
+		{% endfor %}
+		</ul>
+	{% endif %}
+	
+		<form action="{% url 'contactSend' %}" method="POST">
 
 		</br><h3 class="text-center">Let us know what's on your mind!</h2>
 		
