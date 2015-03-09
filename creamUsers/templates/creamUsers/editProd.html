@@ -197,7 +197,7 @@
 	<form action = "{% url 'creamUsers:saveEditResult' %}" method = "post">
 		{% csrf_token %}
 	<div id="outer" style="height:190px"><br/>
-		<h4><strong style="border-bottom:1px solid black">Your Cream Base:</strong></h4>
+		<h4><strong style="border-bottom:1px solid black">1. Your Cream Base:</strong></h4>
 		<select id="base" name="base" onchange="updateText('base')">
 		{% for ingre in ingredients %}
 			{%if ingre.inType == "CreamBase"%}
@@ -211,19 +211,19 @@
 		</select>
 		<strong>
 		<div id="layout_select1" class="1">
-			<br/><p>A thicker cream base may work best for those with very dry skin.</p>			
+			<br/><p style="font-weight:300;">A thicker cream base may work best for those with very dry skin.</p>			
 		</div>
 		<div id="layout_select2" class="2" style="display:none">
-			<br/><p>A regular density cream base may work best for users with normal skin.</p>
+			<br/><p style="font-weight:300;">A regular density cream base may work best for users with normal skin.</p>
 		</div>
 		<div id="layout_select3" class="3" style="display:none">
-			<br/><p>A thinner style cream may best suit a user with oily or sensitive skin.</p>
+			<br/><p style="font-weight:300;">A thinner style cream may best suit a user with oily or sensitive skin.</p>
 		</div>
 		</strong>
 	</div>
 			
 	<div id="outer" style="height:130px">
-		<h4><strong style="border-bottom:1px solid black">Your Penetrate Agent:</strong></h4>
+		<h4><strong style="border-bottom:1px solid black">2. Your Penetrate Agent:</strong></h4>
 		<select id="penetrate" name="penetrate" onchange="updateText('penetrate')">
 		{% for ingre in ingredients %}
 			{%if ingre.inType == "PenetrateAgent"%}
@@ -238,16 +238,16 @@
 		</select>
 		<strong>
 		<div id="second_select1" class="4">
-			<br/><p>Glycerin may work better for those with dry or sensitive skin</p>		
+			<br/><p style="font-weight:300;">Glycerin may work better for those with dry or sensitive skin</p>		
 		</div>
 		<div id="second_select2" class="5" style="display:none">
-			<br/><p>Propylene Glycol may work better for those with oily or normal skin</p>
+			<br/><p style="font-weight:300;">Propylene Glycol may work better for those with oily or normal skin</p>
 		</div>
 		</strong>
 	</div>
 	
 	<div id="outer" style="height:190px"><br/>
-		<h4><strong style="border-bottom:1px solid black">Your Main Element:</strong></h4>
+		<h4><strong style="border-bottom:1px solid black">3. Your Main Element:</strong></h4>
 		<select id="main" name="main" onchange="updateText('main')">
 		{% for ingre in ingredients %}
 			{%if ingre.inType == "Main"%}
@@ -261,13 +261,13 @@
 		</select>
 		<strong>
 		<div id="third_select1" class="6">
-			<br/><p>Vitamin A is a strong antioxidant that helps reduce fine lines and wrinkles.</p>			
+			<br/><p style="font-weight:300;">Vitamin A is a strong antioxidant that helps reduce fine lines and wrinkles.</p>			
 		</div>
 		<div id="third_select2" class="7" style="display:none">
-			<br/><p>Caffeine is used to tighten up skin, giving a more youthful look.</p>
+			<br/><p style="font-weight:300;">Caffeine is used to tighten up skin, giving a more youthful look.</p>
 		</div>
 		<div id="third_select3" class="8" style="display:none">
-			<br/><p>Cocoa butter is ideal for those that want to keep their skin soft and smooth.</p>
+			<br/><p style="font-weight:300;">Cocoa butter is ideal for those that want to keep their skin soft and smooth.</p>
 		</div>
 		</strong>
 	</div>

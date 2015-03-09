@@ -36,6 +36,8 @@ body{
 	display:table-row;
 	height:1px;
 	table-align:center;
+	margin-left:auto;
+	margin-right:auto;
 }
 /*
 .navbar.transparent.navbar-inverse.navbar-fixed-top{
@@ -729,7 +731,7 @@ body {
 	text-align:center;
 	margin-left: auto;
 	margin-right: auto;
-	width:800px;
+	width:1000px;
 	padding-bottom:100px;
 	padding-top:50px;
 }

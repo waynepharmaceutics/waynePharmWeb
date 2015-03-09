@@ -116,7 +116,17 @@
 		background:black;
 		color:white;
 	}
-
+	.resing{
+		font-size:15px;
+		padding-5px;
+		border:1px solid black;
+		border-radius:8px;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+		padding-top:5px;
+		padding-bottom:5px;
+	}
 </style>
 
 <div class="page-row">
@@ -162,24 +172,24 @@
 		<h2><center/><strong/></h2>
 	</div>
 	<h2 class="question">Based on the info you've provided, this is what we recommend...</h2><br/><br/>	
-	<div id="results" style="width:60%; margin-left: auto; margin-right: auto; text-align:center; border: 3px solid black; padding-bottom:30px; border-radius: 8px;">
+	<div id="results" style="width:30%; margin-left: auto; margin-right: auto; text-align:center; border: 3px solid black; padding-bottom:30px; border-radius: 8px;">
 		{% if answer %}
-			<h3>The information you've provided us:</h3><br/><p style="font-family:Museo; font-size: 17px">You are {{answer.question3}} years old, and are {{answer.question4}}. You also have {{answer.question1}} skin, and apply your skin products {{answer.question2}}.</p>
+			<h3 style="padding:3px;color:white;background:black;border-radius:8px;width:350px;margin-left:auto;margin-right:auto;">What you've told us:</h3><br/><p style="font-family:Museo; font-size: 17px">You are {{answer.question3}} years old, and are {{answer.question4}}. <br/>You also have {{answer.question1}} skin, and apply your skin products {{answer.question2}}.</p>
 		{% endif %}
 	</div>
-	<div id="suggestions" style="width:60%; margin-left: auto; margin-right: auto; text-align:center;border-radius: 8px; border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black; text-align:center; padding-bottom:50px;">
-		<br/><h3>What we recommend:</h3>
+	<div id="suggestions" style="width:30%; margin-left: auto; margin-right: auto; text-align:center;border-radius: 8px; border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black; text-align:center; padding-bottom:50px;">
+		<br/><h3 style="padding:3px;color:white;background:black;border-radius:8px;width:350px;margin-left:auto;margin-right:auto;">What we recommend:</h3>
 		<form action=""><br/>
-			<p style="font-family:Museo; font-size: 18px">Cream Base Thickness:</p>
-			<p>{{ingredient1.ingreName}}: {{ingredient1.description}}</p>
+			<p style="font-family:Museo; font-size: 18px">1. Your Cream Base:</p> <p class="resing" style="width:70px;">{{ingredient1.ingreName}}</p>
+			<p style="font-weight:300;">{{ingredient1.description}}</p>
 		</form>
 		<form action=""><br/>
-			<p style="font-family:Museo; font-size: 18px">Penetration agent:</p>
-			<p>{{ingredient2.ingreName}}: {{ingredient2.description}}</p>
+			<p style="font-family:Museo; font-size: 18px">2. Your Penetration Agent:</p> <p class="resing" style="width:170px;">{{ingredient2.ingreName}}</p>
+			<p style="font-weight:300;">{{ingredient2.description}}</p>
 		</form>
 		<form action=""><br/>
-			<p style="font-family:Museo; font-size: 18px">Main Component:</p>
-			<p>{{product.ingredient3.ingreName}}: {{product.ingredient3.description}}</p>
+			<p style="font-family:Museo; font-size: 18px">3. Your Main Element:</p> <p class="resing" style="width:100px;">{{product.ingredient3.ingreName}}</p>
+			<p style="font-weight:300;">{{product.ingredient3.description}}</p>
 			<br/><br/>
 		</form>
 		<div id="buttons">

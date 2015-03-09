@@ -209,7 +209,7 @@
 					<p id="progress_100" class="progressPoint displayNone" style="width: 100%;">
 					</p>
 				</div>
-				<div id="progress" class="progress-bar" style="width:0%;"></div>
+				<div id="progress" class="progress-bar" style="width:0%; color:black;"></div>
 			</div>
 		</div>
 		<div id="buildquestion">
@@ -273,7 +273,7 @@
 	</div>
 
 
-	<div id="q_3" style="display: none; height:750px">
+	<div id="q_3" style="display: none; height:600px">
 		<div id="buildtitle">
 		<h2><center/><strong/><br/></h2>
 		<br/><br/><br/>
@@ -299,20 +299,21 @@
 			</div>
 		</div>
 		</section>
-		<div id="buildquestion">
+		<div id="buildquestion" style-"">
 			<h2 align="center" class="question">What is your age group?</h2><br/>
-			<label for="img8"><img class="imga" src="{% static "creamUsers/images/under25.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-			<input type="checkbox" class="chk " id="img8" name="button3" style="visibility:hidden" value="under 25"></input></label><br/>
+			<label for="img8"><img class="imga" src="{% static "creamUsers/images/under25.png" %}" style="width:200px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+			<input type="checkbox" class="chk " id="img8" name="button3" style="visibility:hidden" value="under 25"></input></label>
 		
-			<label for="img9"><img class="imga" src="{% static "creamUsers/images/26to35.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-			<input type="checkbox" class="chk " id="img9" name="button3" style="visibility:hidden" value="26 to 35"></input></label><br/>
+			<label for="img9"><img class="imga" src="{% static "creamUsers/images/26to35.png" %}" style="width:200px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+			<input type="checkbox" class="chk " id="img9" name="button3" style="visibility:hidden" value="26 to 35"></input></label>
 		
-			<label for="img10"><img class="imga" src="{% static "creamUsers/images/36to49.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-			<input type="checkbox" class="chk " id="img10" name="button3" style="visibility:hidden" value="36 to 49"></input></label><br/>
+			<label for="img10"><img class="imga" src="{% static "creamUsers/images/36to49.png" %}" style="width:200px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+			<input type="checkbox" class="chk " id="img10" name="button3" style="visibility:hidden" value="36 to 49"></input></label>
 			
-			<label for="img11"><img class="imga" src="{% static "creamUsers/images/50plus.png" %}" style="width:250px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
-			<input type="checkbox" class="chk " id="img11" name="button3" style="visibility:hidden" value="over 50"></input></label><br/>
+			<label for="img11"><img class="imga" src="{% static "creamUsers/images/50plus.png" %}" style="width:200px;height:75px;" onclick="toggle_visibility('q_3');expandDiv('q_4')">
+			<input type="checkbox" class="chk " id="img11" name="button3" style="visibility:hidden" value="over 50"></input></label>
 			
+			<br/><br/><br/><br/>
 			<div id="buttons text-align:center"><br/>
 				<input type="BUTTON" style="color:white;border:1px solid white;background:black;" onclick="toggle_visibility('q_3');expandDiv('q_2')" Value="Previous">
 			</div>
@@ -351,7 +352,7 @@
 			<label for="img12"><img style="width:300px;height:200px" class="imga" src="{% static "creamUsers/images/energetic.png" %}">
 			<input type="checkbox" class="chk " id="img12" name="button4" style="visibility:hidden" value="energetic" onclick="toggle_visibility('q_4');expandDiv('q_5')"><p>Energetic</p></input></label>
 		
-			<label for="img13"><img style="width:200px;height:300px" class="imga" src="{% static "creamUsers/images/socialite.png" %}">
+			<label for="img13"><img style="width:300px;height:200px" class="imga" src="{% static "creamUsers/images/fashion.jpg" %}">
 			<input type="checkbox" class="chk " id="img13" name="button4" style="visibility:hidden" value="social" onclick="toggle_visibility('q_4');expandDiv('q_5')"><br/><p>Socialite</p></input></label>
 		
 			<label for="img14"><img style="width:300px;height:200px" class="imga" src="{% static "creamUsers/images/reserved.png" %}">
