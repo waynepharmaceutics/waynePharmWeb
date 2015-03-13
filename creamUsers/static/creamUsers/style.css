@@ -262,6 +262,10 @@ a.btn.btn-sm:hover, a.btn.btn-sm:focus{
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary{
 	background:green;
 }
+a.btn.btn-lg.btn-primary:hover, a.btn.btn-lg.btn-primary:focus{
+	background-color:white;
+	color:black;
+}
 .fourcolumn{
 	width:auto;
 	padding: 0 150px 0 150px;
