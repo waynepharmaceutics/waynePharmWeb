@@ -58,7 +58,7 @@ body{
   	-transition: opacity 0.2s;
 }
 .container-fluid.col-md-8{
-	float:inherit;
+	float:right;
 }
 .navbar-brand{
 	background: url(images/logo.png) no-repeat;
