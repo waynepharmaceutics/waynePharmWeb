@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-{% extends "baseWithNav.html" %}
+{% extends "baseNavFooter.html" %}
 
 {% block content %}
 {% load staticfiles %}
 {% load bootstrap3 %}
-
+<nav class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container-fluid col-md-8" style="float:inherit;">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" style="" href="/"></a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">
+			<li><a href="/">Home</a></li>
+			<li class="dropdown" href="/plan/"><a class="dropdown-toggle" data-toggle="dropdown" href="plan.html">Ingredients<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="/plan#GroupA">Cream Base</a></li>
+					<li><a href="/plan#GroupB">Main Components</a></li>
+					<li><a href="/plan#GroupC">Finishing Touches</a></li>
+				</ul>
+			</li>
+			<li><a href="/build/">Build</a></li>
+			<li class="active"><a href="/about/">About Us</a></li>
+			<li><a href="/contact/">Contact</a></li>
+			{% if user.is_authenticated %} 
+			<li id="menu-gap"><a href="/users/"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
+			<li id="menu-gap"><a href="/logout/"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+			{% else %} 
+			<li id="menu-gap"><a href="/login/"><span class="glyphicon glyphicon-home"></span> Login</a></li>
+			{% endif %} 
+			<li><a href="{% url 'creamUsers:cartdetail' %}"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a></li>
+		  </ul>
+		</div>
+	</div>
+</nav>
 <span id="aboutsection">
 	<br/><br/><br/><br/></br><h2 style="font-family:Museo;color:black;text-align:center">Our Story</h2>
 	<hr color="black" align="center" size="2" width="50%">
